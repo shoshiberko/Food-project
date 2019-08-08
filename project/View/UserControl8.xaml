@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="project.View.UserControl8"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:project.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="230*"/>
+            <RowDefinition Height="250*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="38*"/>
+                <RowDefinition Height="208*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="225*"/>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="200*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Content="Choose Week:" FontSize="18" FontWeight="Bold"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="25*"/>
+                </Grid.RowDefinitions>
+                <local:WeekPicker Grid.Column="1" Grid.Row="1"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="145*"/>
+                <ColumnDefinition Width="411*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\logo.png"/>
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="328*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <local:MySliderUserControl Grid.Row="0" />
+                <local:MySliderUserControl Grid.Row="1" />
+                <local:MySliderUserControl Grid.Row="2" />
+                <local:MySliderUserControl Grid.Row="3" />
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Calories:" Grid.Row="0"/>
+                <Label Content="Fats:" Grid.Row="2"/>
+                <Label Content="Protiens:" Grid.Row="4"/>
+                <Label Content="Carbohydrates:" Grid.Row="6"/>
+
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\food.png"/>
+                <Image Grid.Row="2" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sunflower-oil.png"/>
+                <Image Grid.Row="4" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\fried-egg.png"/>
+                <Image Grid.Row="6"  Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sandwich.png" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="182*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="43*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonSetGoals" Content="Set Goals" Grid.Column="1" Grid.Row="1" FontSize="20"  Foreground="White" Background="#74d14c" FontWeight="Bold" BorderBrush="#FF7D7575" />
+        </Grid>
+    </Grid>
+</UserControl>
