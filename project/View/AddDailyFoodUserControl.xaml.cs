@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,20 @@ namespace project.View
     /// <summary>
     /// Interaction logic for UserControl7.xaml
     /// </summary>
-    public partial class UserControl7 : UserControl
+    public partial class AddDailyFoodUserControl : UserControl
     {
-        public UserControl7()
+        AddDailyFoodViewModel addDailyFoodViewModel;
+        public AddDailyFoodUserControl()
         {
             InitializeComponent();
+            addDailyFoodViewModel = new AddDailyFoodViewModel();
+            this.DataContext = addDailyFoodViewModel;
+        }
+        
+
+        private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            addDailyFoodViewModel.getDailyFoodByDate((DateTime)(sender as DatePicker).SelectedDate);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="project.View.UserControl3"
+﻿<UserControl x:Class="project.View.FoodDetailsUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="15*"/>
                 <ColumnDefinition Width="37*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\food.png"></Image>
+            <Image Grid.Column="0" Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\food.png"></Image>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
@@ -27,19 +27,19 @@
                     <RowDefinition Height="30*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="textBlockFoodName" Text="Pizza" FontWeight="Bold" Foreground="#74d14c" TextDecorations="Underline" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                <TextBlock x:Name="textBlockFoodName" Text="{Binding FoodNameProperty}" TextWrapping="Wrap" FontWeight="Bold" Foreground="#74d14c" TextDecorations="Underline" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"></TextBlock>
             </Grid>
 
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="5*"/>
                 <RowDefinition Height="105*"/>
-                <RowDefinition Height="20*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="78*"/>
+                    <ColumnDefinition Width="65*"/>
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="102*"/>
                     <ColumnDefinition Width="1"/>
@@ -52,15 +52,15 @@
                         <RowDefinition Height="20*"/>
                         <RowDefinition Height="10*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="1" Content="  Calories" FontWeight="Bold" FontSize="14" ></Label>
+                    <Label Grid.Row="1" Content="Calories" FontWeight="Bold" FontSize="16" ></Label>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="15*"/>
                             <ColumnDefinition Width="51*"/>
                             <ColumnDefinition Width="14*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Name="labelCaloriesAmount" Content="270"  FontWeight="Bold" Grid.Column="1" FontSize="18" ></Label>
+                        <Label Name="labelCaloriesAmount" Content="{Binding CaloriesProperty}"  FontWeight="Bold" Grid.Column="1" FontSize="18" ></Label>
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="1">
@@ -84,14 +84,14 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="1" Grid.Column="0" Content="Fats" FontSize="6" FontWeight="Bold" />
-                    <Label Grid.Row="1"  Name="fatsLabel" Grid.Column="1" Content="9.8g" FontSize="6"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Proteins" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="2"  Name="proteinsLabel" Grid.Column="1" Content="12.3g" FontSize="6"/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="Carbohydrates" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="3"  Name="carbLabel" Grid.Column="1" Content="33.6g" FontSize="6"/>
-                    <Label Grid.Row="4" Grid.Column="0" Content="Sodium" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="4"  Name="sodiumLabel" Grid.Column="1" Content="551.1mg" FontSize="6"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Fats" FontSize="12" FontWeight="Bold" />
+                    <Label Grid.Row="1"  Name="fatsLabel" Grid.Column="1" Content="{Binding FatsProperty}" FontSize="12"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Proteins" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="2"  Name="proteinsLabel" Grid.Column="1" Content="{Binding ProtiensProperty}" FontSize="12"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Carbohydrates" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="3"  Name="carbLabel" Grid.Column="1" Content="{Binding CarbProperty}" FontSize="12"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Sodium" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="4"  Name="sodiumLabel" Grid.Column="1" Content="{Binding SodiumProperty}" FontSize="12"/>
                     
                 </Grid>
                 <Grid Grid.Column="3">
@@ -115,14 +115,14 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="1" Grid.Column="0" Content="Sugars" FontSize="6" FontWeight="Bold" />
-                    <Label Grid.Row="1"  Name="sugarsLabel" Grid.Column="1" Content="0.2g" FontSize="6"/>
-                    <Label Grid.Row="2" Grid.Column="0" Content="Vitamins" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="2"  Name="vitaminsLabel" Grid.Column="1" Content="5.8mg" FontSize="6"/>
-                    <Label Grid.Row="3" Grid.Column="0" Content="Dietary Fiber" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="3"  Name="dietaryFiberLabel" Grid.Column="1" Content="2.8g" FontSize="6"/>
-                    <Label Grid.Row="4" Grid.Column="0" Content="Water" FontSize="6" FontWeight="Bold"/>
-                    <Label Grid.Row="4"  Name="waterLabel" Grid.Column="1" Content="551.1g" FontSize="6"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Sugars" FontSize="12" FontWeight="Bold" />
+                    <Label Grid.Row="1"  Name="sugarsLabel" Grid.Column="1" Content="{Binding SugarsProperty}" FontSize="12"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Vitamins" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="2"  Name="vitaminsLabel" Grid.Column="1" Content="{Binding VitaminsProperty}" FontSize="12"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Dietary Fiber" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="3"  Name="dietaryFiberLabel" Grid.Column="1" Content="{Binding FiberProperty}" FontSize="12"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Water" FontSize="12" FontWeight="Bold"/>
+                    <Label Grid.Row="4"  Name="waterLabel" Grid.Column="1" Content="{Binding WaterProperty}" FontSize="12"/>
                 </Grid>
             </Grid>
 

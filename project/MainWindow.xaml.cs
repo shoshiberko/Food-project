@@ -22,14 +22,19 @@ namespace project
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
             InitializeComponent();
-            
-               //ImpBL bl = new ImpBL();
-                //bl.getFoodDetails("kkk");
 
-           
+            /*using (var db = new FoodContext())
+            {
+                db.Users.Add(new User() { EmailAddress = "shosh@gmail.com", Password ="12344321", BirthDate=DateTime.Now, LastUpdateCurrentWeight=DateTime.Now});
+                db.SaveChanges();
+            }*/
+         
+
         }
+        
     }
 }

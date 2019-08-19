@@ -51,6 +51,7 @@
     <Compile Include="FoodContext.cs" />
     <Compile Include="FoodDetails.cs" />
     <Compile Include="FoodItem.cs" />
+    <Compile Include="Meal.cs" />
     <Compile Include="MyEnums.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

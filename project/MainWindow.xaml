@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:project"
         xmlns:View="clr-namespace:project.View" x:Class="project.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="700">
-    <View:NumericUpDownUserControl></View:NumericUpDownUserControl>
+        Title="MainWindow" Height="800" Width="800">
+    <View:AddDailyFoodUserControl/>
 
 
 </Window>

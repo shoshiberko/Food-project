@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,14 @@ namespace project.View
     /// <summary>
     /// Interaction logic for UserControl4.xaml
     /// </summary>
-    public partial class UserControl4 : UserControl
+    public partial class SearchUserControl : UserControl
     {
-        public UserControl4()
+        SearchUserControlViewModel searchUserControlViewModel;
+        public SearchUserControl()
         {
             InitializeComponent();
-            FocusManager.SetFocusedElement(this, searchTextBox);
+            searchUserControlViewModel = new SearchUserControlViewModel();
+            this.DataContext = searchUserControlViewModel;
         }
     }
 }

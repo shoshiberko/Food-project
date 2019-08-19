@@ -12,17 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using project.ViewModel;
+using project.Model;
 
 namespace project.View
 {
     /// <summary>
-    /// Interaction logic for UserControl6.xaml
+    /// Interaction logic for FoodSearchItemUserControl.xaml
     /// </summary>
-    public partial class UserControl6 : UserControl
+    public partial class FoodSearchItemUserControl : UserControl
     {
-        public UserControl6()
+
+        //FoodSearchItemViewModel foodSearchItemViewModel; 
+        public FoodSearchItemUserControl()
         {
             InitializeComponent();
+        }
+
+        private void Popup_Opened(object sender, EventArgs e)
+        {
+            foodDetailsUserControl.FoodDependencyProperty = TextFoodDetails.Text;
         }
     }
 }

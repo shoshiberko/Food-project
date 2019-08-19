@@ -54,13 +54,13 @@ namespace BL
         {
             return myDal.updateDailyFood(dailyFood);
         }
-        public bool removeDailyFood(DateTime currentDate)
+        public bool removeDailyFood(string emailAddress, DateTime currentDate)
         {
-            return myDal.removeDailyFood(currentDate);
+            return myDal.removeDailyFood(emailAddress,currentDate);
         }
-        public DailyFood getDailyFood(DateTime currentDate)
+        public DailyFood getDailyFood(string emailAddress, DateTime currentDate)
         {
-            return myDal.getDailyFood(currentDate);
+            return myDal.getDailyFood(emailAddress, currentDate);
         }
         public List<DailyFood> getAllDailyFoods()
         {
@@ -69,6 +69,15 @@ namespace BL
         public List<DailyFood> getDailyFoodsByPredicate(Func<DailyFood, bool> predicate)
         {
             return myDal.getDailyFoodsByPredicate(predicate);
+        }
+        public List<FoodItem> getDailyFoodMealList(DateTime currentDate, String emailAddress, MEALTIME mealTime)
+        {
+            List<FoodItem> result = new List<FoodItem>();
+            foreach (var item in  myDal.getListOfMeal(currentDate, emailAddress, mealTime))
+            {
+                result.Add(new FoodItem() { Key = item.FoodKey, Name = item.FoodName, AmountGm = item.FoodAmount, Calories100G = item.Calories100Gm });
+            }
+            return result;
         }
         #endregion
         #region WeekGoals
@@ -97,6 +106,28 @@ namespace BL
             return myDal.getWeekGoalsByPredicate(predicate);
         }
 
+        #endregion
+        #region Meals
+        public bool addMeal(Meal meal)
+        {
+            return myDal.addMeal(meal);
+        }
+        public bool updateMeals(DateTime currentDate, String emailAddress, List<FoodItem> breakfast, List<FoodItem> brunch, List<FoodItem> dinner, List<FoodItem> snacks)
+        {
+            return myDal.updateMeals(currentDate,emailAddress, breakfast,brunch, dinner, snacks);
+        }
+        public List<Meal> getMeal(DateTime currentDate, String emailAddress)
+        {
+           return  myDal.getMeal(currentDate,emailAddress);
+        }
+        public List<Meal> getAllMeals()
+        {
+           return myDal.getAllMeals();
+        }
+        public List<Meal> getMealsByPredicate(Func<Meal, bool> predicate)
+        {
+            return myDal.getMealsByPredicate(predicate);
+        }
         #endregion
         #region  API
         public List<FoodItem> getListFoodItems(String food)

@@ -27,6 +27,20 @@ namespace DAL
             catch (Exception e){ return false; }
         }
 
+        public bool addMeal(Meal meal)
+        {
+            try
+            {
+                using (var db = new FoodContext())
+                {
+                    db.Meals.Add(meal);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+
         public bool addUser(User user)
         {
             try
@@ -64,6 +78,14 @@ namespace DAL
             }
         }
 
+        public List<Meal> getAllMeals()
+        {
+            using (var db = new FoodContext())
+            {
+                return (from b in db.Meals
+                        select b).ToList();
+            }
+        }
 
         public List<User> getAllUsers()
         {
@@ -90,6 +112,17 @@ namespace DAL
                         select b).ToList();
             }
         }
+
+        public List<Meal> getMealsByPredicate(Func<Meal, bool> predicate)
+        {
+            using (var db = new FoodContext())
+            {
+                return (from b in db.Meals
+                        where predicate(b)
+                        select b).ToList();
+            }
+        }
+
         public List<DailyFood> getDailyFoodsByPredicate(Func<DailyFood, bool> predicate)
         {
             using (var db = new FoodContext())
@@ -110,15 +143,29 @@ namespace DAL
         }
 
 
-        public DailyFood getDailyFood(DateTime currentDate)
+        public DailyFood getDailyFood(string emailAddress, DateTime currentDate)
         {
             using (var db = new FoodContext())
             {
-                return ((from b in db.DailyFoods
-                        where b.CurrentDate==currentDate
-                        select b).ToList()).FirstOrDefault(null);
+                var query = ((from b in db.DailyFoods
+                              where  b.CurrentDate==currentDate && b.EmailAddress.Equals(emailAddress)
+                              select b));
+                List < DailyFood > lst= query.ToList<DailyFood>();
+                if (lst == null) return null;
+                return (lst).FirstOrDefault();
             }
         }
+
+        public List<Meal> getMeal(DateTime currentDate,String emailAddress)
+        {
+            using (var db = new FoodContext())
+            {
+                return ((from b in db.Meals
+                         where b.CurrentDate == currentDate && b.EmailAddress==emailAddress
+                         select b).ToList());
+            }
+        }
+
 
         public User getUser(string emailAddress)
         {
@@ -145,13 +192,50 @@ namespace DAL
             }
         }
 
-        public bool removeDailyFood(DateTime currentDate)
+        public List<Meal> getListOfMeal(DateTime currentDate, String emailAddress, MEALTIME mealTime)
+        {
+            using (var db = new FoodContext())
+            {
+                return ((from b in db.Meals
+                         where b.CurrentDate == currentDate && b.EmailAddress == emailAddress && b.MealTime==mealTime
+                         select b).ToList());
+            }
+        }
+
+        public bool removeDailyFood(string emailAddress, DateTime currentDate)
         {
             try
             {
                 using (var db = new FoodContext())
                 {
-                    db.DailyFoods.Remove(getDailyFood(currentDate));
+                    db.DailyFoods.Remove(getDailyFood(emailAddress,currentDate));
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+
+        public bool updateMeals(DateTime currentDate, String emailAddress,List<FoodItem>breakfast, List<FoodItem> brunch, List<FoodItem> dinner, List<FoodItem> snacks)
+        {
+            try
+            {
+                using (var db = new FoodContext())
+                {
+                    var queryList= ((from b in db.Meals
+                                     where b.CurrentDate == currentDate && b.EmailAddress == emailAddress
+                                     select b).ToList());
+                    foreach(var item in queryList)
+                         db.Meals.Remove(item);
+                    foreach(var breakfastItem in breakfast)
+                        db.Meals.Add(new Meal() {CurrentDate=currentDate, EmailAddress=emailAddress, MealTime=MEALTIME.BREAKFAST, FoodKey=breakfastItem.Key, FoodName=breakfastItem.Name, FoodAmount=breakfastItem.AmountGm });
+                    foreach (var brunchItem in brunch)
+                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BRUNCH, FoodKey = brunchItem.Key, FoodName = brunchItem.Name, FoodAmount = brunchItem.AmountGm });
+                    foreach (var dinnerItem in dinner)
+                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.DINNER, FoodKey = dinnerItem.Key, FoodName = dinnerItem.Name, FoodAmount = dinnerItem.AmountGm });
+                    foreach (var snacksItem in snacks)
+                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.SNACKS, FoodKey = snacksItem.Key, FoodName = snacksItem.Name, FoodAmount = snacksItem.AmountGm });
+
                     db.SaveChanges();
                 }
                 return true;
@@ -201,7 +285,7 @@ namespace DAL
                 using (var db = new FoodContext())
                 {
                     //remove and add = update
-                    db.DailyFoods.Remove(getDailyFood(dailyFood.CurrentDate));
+                    db.DailyFoods.Remove(getDailyFood(dailyFood.EmailAddress,dailyFood.CurrentDate));
                     db.DailyFoods.Add(dailyFood);
                     db.SaveChanges();
                 }

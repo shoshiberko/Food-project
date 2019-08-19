@@ -17,8 +17,8 @@ namespace DAL
 
         bool addDailyFood(DailyFood dailyFood);
         bool updateDailyFood(DailyFood dailyFood);
-        bool removeDailyFood(DateTime currentDate);
-        DailyFood getDailyFood(DateTime currentDate);
+        bool removeDailyFood(string emailAddress, DateTime currentDate);
+        DailyFood getDailyFood(string emailAddress,DateTime currentDate);
         List<DailyFood> getAllDailyFoods();
         List<DailyFood> getDailyFoodsByPredicate(Func<DailyFood, bool> predicate);
 
@@ -28,6 +28,13 @@ namespace DAL
         WeekGoals getWeekGoals(DateTime sundayDate);
         List<WeekGoals> getAllWeekGoals();
         List<WeekGoals> getWeekGoalsByPredicate(Func<WeekGoals, bool> predicate);
+
+        bool addMeal(Meal meal);
+        bool updateMeals(DateTime currentDate, String emailAddress, List<FoodItem> breakfast, List<FoodItem> brunch , List<FoodItem> dinner, List<FoodItem> snacks );
+        List<Meal> getMeal(DateTime currentDate, String emailAddress);
+        List<Meal> getAllMeals();
+        List<Meal> getMealsByPredicate(Func<Meal, bool> predicate);
+        List<Meal> getListOfMeal(DateTime currentDate, String emailAddress, MEALTIME mealTime);
 
         List<FoodItem> getListFoodItems(String food);
         FoodDetails getFoodDetails(string keyFood);

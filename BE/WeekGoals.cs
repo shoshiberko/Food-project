@@ -10,7 +10,7 @@ namespace BE
 {
     public class WeekGoals
     {
-        public String EmailAddress { get; set; }
+        public String EmailAddress {get; set; }
         [Key]
         public DateTime SundayDate { get; set; }
         public int GoalCarbs { get; set; }

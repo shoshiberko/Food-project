@@ -62,14 +62,32 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddUserCommand.cs" />
+    <Compile Include="Commands\ClosePopUpCommand.cs" />
+    <Compile Include="Commands\DeleteFoodItemCommand.cs" />
     <Compile Include="Commands\DownCommand.cs" />
+    <Compile Include="Commands\GetFoodDetailsCommand.cs" />
+    <Compile Include="Commands\SaveDateMealsCommand.cs" />
+    <Compile Include="Commands\SearchListItemCommand.cs" />
     <Compile Include="Commands\UpCommand.cs" />
+    <Compile Include="Model\AddDailyFoodModel.cs" />
+    <Compile Include="Model\AddFoodItemModel.cs" />
+    <Compile Include="Model\FoodSearchItemModel.cs" />
+    <Compile Include="Model\ImpBl.cs" />
     <Compile Include="Model\RegisterModel.cs" />
+    <Compile Include="Model\SearchUserControlModel.cs" />
+    <Compile Include="ViewModel\AddDailyFoodViewModel.cs" />
+    <Compile Include="ViewModel\AddFoodItemViewModel.cs" />
+    <Compile Include="ViewModel\FoodDetailsViewModel.cs" />
+    <Compile Include="ViewModel\FoodSearchItemViewModel.cs" />
     <Compile Include="ViewModel\NumericUpDownUserControlViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\EmailValidationRules.cs" />
     <Compile Include="ViewModel\FloatValidationRules.cs" />
     <Compile Include="ViewModel\IntValidationRules.cs" />
+    <Compile Include="ViewModel\SearchUserControlViewModel.cs" />
+    <Compile Include="View\FoodSearchItemUserControl.xaml.cs">
+      <DependentUpon>FoodSearchItemUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MySliderUserControl.xaml.cs">
       <DependentUpon>MySliderUserControl.xaml</DependentUpon>
     </Compile>
@@ -77,26 +95,26 @@
       <DependentUpon>NumericUpDownUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PasswordHelper.cs" />
+    <Compile Include="View\SearchFoodComboBox.xaml.cs">
+      <DependentUpon>SearchFoodComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl10.xaml.cs">
       <DependentUpon>UserControl10.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl2.xaml.cs">
-      <DependentUpon>UserControl2.xaml</DependentUpon>
+    <Compile Include="View\FoodDetailsUserControl.xaml.cs">
+      <DependentUpon>FoodDetailsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl3.xaml.cs">
-      <DependentUpon>UserControl3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserControl4.xaml.cs">
-      <DependentUpon>UserControl4.xaml</DependentUpon>
+    <Compile Include="View\SearchUserControl.xaml.cs">
+      <DependentUpon>SearchUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl5.xaml.cs">
       <DependentUpon>UserControl5.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl6.xaml.cs">
-      <DependentUpon>UserControl6.xaml</DependentUpon>
+    <Compile Include="View\AddFoodItem.xaml.cs">
+      <DependentUpon>AddFoodItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl7.xaml.cs">
-      <DependentUpon>UserControl7.xaml</DependentUpon>
+    <Compile Include="View\AddDailyFoodUserControl.xaml.cs">
+      <DependentUpon>AddDailyFoodUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl8.xaml.cs">
       <DependentUpon>UserControl8.xaml</DependentUpon>
@@ -119,6 +137,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\FoodSearchItemUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MySliderUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,19 +153,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SearchFoodComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserControl10.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl2.xaml">
+    <Page Include="View\FoodDetailsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserControl4.xaml">
+    <Page Include="View\SearchUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,11 +173,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl6.xaml">
+    <Page Include="View\AddFoodItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl7.xaml">
+    <Page Include="View\AddDailyFoodUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,7 +234,9 @@
       <Name>BL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\foodImageListItem.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\logoFinal.png" />
   </ItemGroup>
@@ -251,6 +275,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\weightPink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\FoodImageItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ImageFoodItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plusImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\minusImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\exitImage.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

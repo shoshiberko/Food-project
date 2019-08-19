@@ -24,11 +24,27 @@ namespace project.View
     public partial class NumericUpDownUserControl : UserControl
     {
         NumericUpDownUserControlViewModel vm;
+        public static readonly DependencyProperty TextNumValue = DependencyProperty.Register("TextNumValueProperty", typeof(String), typeof(NumericUpDownUserControl),new UIPropertyMetadata("1", new PropertyChangedCallback(OnTextNumValueChanged)));
+        public String TextNumValueProperty
+        {
+            get{ return (String)GetValue(TextNumValue); }
+            set { SetValue(TextNumValue, value); }
+        }
+        private static void OnTextNumValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NumericUpDownUserControl numericUpDownUserControl = d as NumericUpDownUserControl;
+            numericUpDownUserControl.vm.TextNumValueProperty = numericUpDownUserControl.TextNumValueProperty;
+        }
         public NumericUpDownUserControl()
         {
             InitializeComponent();
             vm = new NumericUpDownUserControlViewModel();
-            this.DataContext = vm;
+            stackPanel.DataContext = vm;
+        }
+
+        private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextNumValueProperty = (sender as TextBox).Text;
         }
     }
 

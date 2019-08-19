@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,18 @@ using System.Windows.Shapes;
 namespace project.View
 {
     /// <summary>
-    /// Interaction logic for UserControl2.xaml
+    /// Interaction logic for UserControl6.xaml
     /// </summary>
-    public partial class UserControl2 : UserControl
+    public partial class AddFoodItem : UserControl
     {
-        public UserControl2()
+        AddFoodItemViewModel addFoodItemViewModel;
+        
+        public AddFoodItem()
         {
             InitializeComponent();
+           // addFoodItemViewModel = new AddFoodItemViewModel();
+           // this.DataContext = addFoodItemViewModel;
         }
+
     }
 }

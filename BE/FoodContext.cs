@@ -12,6 +12,7 @@ namespace BE
         public DbSet<User> Users { get; set; }
         public DbSet<DailyFood> DailyFoods { get; set; }
         public DbSet<WeekGoals> WeekGoals { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }
 
