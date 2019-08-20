@@ -11,12 +11,12 @@
 
     <StackPanel x:Name="stackPanel" Orientation="Horizontal">
         <Button x:Name="cmdUp" Command="{Binding UpCommand}" CommandParameter="{Binding}" Margin="2" Background="Transparent" BorderThickness="0" >
-            <Image x:Name="image" Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\plusImage.png"/>
+            <Image x:Name="image" Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\plusImage.png"/>
             <!--<TextBox Text="Up"></TextBox>-->
         </Button>
         <TextBox x:Name="txtNum" IsEnabled="False" Text="{Binding Path=TextNumValueProperty, Mode=OneWay}" Background="Transparent" BorderBrush="Transparent" TextChanged="txtNum_TextChanged"/>
         <Button x:Name="cmdDown"  Command="{Binding DownCommand}" CommandParameter="{Binding}"  Margin="2" Background="Transparent" BorderThickness="0">
-            <Image x:Name="image2" Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\minusImage.png"></Image>
+            <Image x:Name="image2" Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\minusImage.png"></Image>
             <!--<TextBox Text="Down"></TextBox>-->
         </Button>
 

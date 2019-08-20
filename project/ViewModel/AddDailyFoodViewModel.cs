@@ -19,14 +19,15 @@ namespace project.ViewModel
         AddDailyFoodModel addDailyFoodModel;
         public ICommand SaveCommand { get; set; }
 
-        public static readonly DependencyProperty Date = DependencyProperty.Register("DateProperty", typeof(DateTime), typeof(AddDailyFoodViewModel),new PropertyMetadata(DateTime.Now));
+
+        public static readonly DependencyProperty Date = DependencyProperty.Register("DateProperty", typeof(DateTime), typeof(AddDailyFoodViewModel), new PropertyMetadata(DateTime.Now.Date));
         public DateTime DateProperty
         {
             get { return (DateTime)GetValue(Date); }
             set { SetValue(Date, value); }
         }
 
-        public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(AddDailyFoodViewModel),new PropertyMetadata("shosh@gmail.com"));
+        public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(AddDailyFoodViewModel), new PropertyMetadata("shosh@gmail.com"));
         public String EmailAddressProperty
         {
             get { return (String)GetValue(EmailAddress); }
@@ -36,87 +37,95 @@ namespace project.ViewModel
         public void getDailyFoodByDate(DateTime selectedDate)
         {
             DailyFood df = addDailyFoodModel.getDailyFoodByDate(EmailAddressProperty, selectedDate);
-            List<FoodItem> breakfastLst= addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.BREAKFAST);
+            List<FoodItem> breakfastLst = addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.BREAKFAST);
             List<FoodItem> brunchLst = addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.BRUNCH);
             List<FoodItem> dinnerLst = addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.DINNER);
             List<FoodItem> snacksLst = addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.SNACKS);
             if (df != null)
             {
-                MoodProperty = df.DailyMood;
-                ActivityProperty = df.DailyActivity;
+                MoodProperty =(int) df.DailyMood;
+                ActivityProperty = (int)df.DailyActivity;
                 TotalCaloriesProperty = df.TotalCalories.ToString();
                 TotalCarbsProperty = df.TotalCarbs.ToString();
                 TotalFatsProperty = df.TotalFats.ToString();
                 TotalProteinsProperty = df.TotalPortiens.ToString();
-               /* BreakfastListProperty = convertFoodItemListToObs(breakfastLst);
-                BrunchListProperty = convertFoodItemListToObs(brunchLst);
-                DinnerListProperty = convertFoodItemListToObs(dinnerLst);
-                SnacksListProperty = convertFoodItemListToObs(snacksLst);*/
             }
             else
             {
-              //  MoodProperty = ;
-                //ActivityProperty = ;
+                  MoodProperty =-1 ;
+                ActivityProperty =-1 ;
                 TotalCaloriesProperty = "0";
                 TotalCarbsProperty = "0";
                 TotalFatsProperty = "0";
                 TotalProteinsProperty = "0";
-              /*  BreakfastListProperty = convertFoodItemListToObs(breakfastLst);
-                BrunchListProperty = convertFoodItemListToObs(brunchLst);
-                DinnerListProperty = convertFoodItemListToObs(dinnerLst);
-                SnacksListProperty = convertFoodItemListToObs(snacksLst);*/
 
             }
-            BreakfastListProperty = convertFoodItemListToObs(breakfastLst);
-            BrunchListProperty = convertFoodItemListToObs(brunchLst);
-            DinnerListProperty = convertFoodItemListToObs(dinnerLst);
-            SnacksListProperty = convertFoodItemListToObs(snacksLst);
+            BreakfastListProperty = convertFoodItemListToObs(breakfastLst,MEALTIME.BREAKFAST);
+            BrunchListProperty = convertFoodItemListToObs(brunchLst,MEALTIME.BRUNCH);
+            DinnerListProperty = convertFoodItemListToObs(dinnerLst, MEALTIME.DINNER);
+            SnacksListProperty = convertFoodItemListToObs(snacksLst, MEALTIME.SNACKS);
             BreakfastCaloriesProperty = "0";
             BrunchCaloriesProperty = "0";
             DinnerCaloriesProperty = "0";
             SnacksCaloriesProperty = "0";
             foreach (var item in BreakfastListProperty)
             {
-                BreakfastCaloriesProperty = (float.Parse(BreakfastCaloriesProperty)+float.Parse(item.CaloriesProperty)).ToString();
+                BreakfastCaloriesProperty = (float.Parse(BreakfastCaloriesProperty) + item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
             }
             foreach (var item in BrunchListProperty)
             {
-                BrunchCaloriesProperty = (float.Parse(BrunchCaloriesProperty) + float.Parse(item.CaloriesProperty)).ToString();
+                BrunchCaloriesProperty = (float.Parse(BrunchCaloriesProperty) +item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
             }
             foreach (var item in DinnerListProperty)
             {
-                DinnerCaloriesProperty = (float.Parse(DinnerCaloriesProperty) + float.Parse(item.CaloriesProperty)).ToString();
+                DinnerCaloriesProperty = (float.Parse(DinnerCaloriesProperty) + item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
             }
             foreach (var item in SnacksListProperty)
             {
-                SnacksCaloriesProperty = (float.Parse(SnacksCaloriesProperty) + float.Parse(item.CaloriesProperty)).ToString();
+                SnacksCaloriesProperty = (float.Parse(SnacksCaloriesProperty) + +item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
             }
 
 
         }
 
-        ObservableCollection<AddFoodItemViewModel> convertFoodItemListToObs(List<FoodItem> lst)
+        ObservableCollection<AddFoodItemViewModel> convertFoodItemListToObs(List<FoodItem> lst,MEALTIME mt)
         {
             ObservableCollection<AddFoodItemViewModel> result = new ObservableCollection<AddFoodItemViewModel>();
+            AddFoodItemViewModel foodItemVm;
             foreach (var item in lst)
             {
-                result.Add(new AddFoodItemViewModel() { FoodNameProperty=item.Name, FoodKey=item.Key, FoodAmountProperty=item.AmountGm.ToString(), Calories100Gm=item.Calories100G });
+                foodItemVm = new AddFoodItemViewModel() { FoodNameProperty = item.Name, FoodKey = item.Key, FoodAmountProperty = item.AmountGm.ToString(), Calories100Gm = item.Calories100G, CaloriesProperty= (item.Calories100G* item.AmountGm).ToString(), GMProperty=(100* item.AmountGm).ToString()+"g" };
+                switch (mt)
+                {
+                    case MEALTIME.BREAKFAST: foodItemVm.PropertyChanged += PropertyChangedFoodItemBreakfast;
+                        break;
+                    case MEALTIME.BRUNCH:
+                        foodItemVm.PropertyChanged += PropertyChangedFoodItemBrunch;
+                        break;
+                    case MEALTIME.DINNER:
+                        foodItemVm.PropertyChanged += PropertyChangedFoodItemDinner;
+                        break;
+                    case MEALTIME.SNACKS:
+                        foodItemVm.PropertyChanged += PropertyChangedFoodItemSnacks;
+                        break;
+                }
+                
+                result.Add(foodItemVm);
             }
             return result;
         }
-
-
-        public static readonly DependencyProperty Mood = DependencyProperty.Register("MoodProperty", typeof(MOOD), typeof(AddDailyFoodViewModel));
-        public MOOD MoodProperty
+        
+        public static readonly DependencyProperty Mood = DependencyProperty.Register("MoodProperty", typeof(int), typeof(AddDailyFoodViewModel));
+        public int MoodProperty
         {
-            get { return (MOOD)GetValue(Mood); }
+            get { return (int)GetValue(Mood); }
             set { SetValue(Mood, value); }
         }
 
-        public static readonly DependencyProperty Activity = DependencyProperty.Register("ActivityProperty", typeof(ACTIVITY), typeof(AddDailyFoodViewModel));
-        public ACTIVITY ActivityProperty
+        public static readonly DependencyProperty Activity = DependencyProperty.Register("ActivityProperty", typeof(int), typeof(AddDailyFoodViewModel));
+        public int ActivityProperty
         {
-            get { return (ACTIVITY)GetValue(Activity); }
+            get { return (int)GetValue(Activity); }
             set { SetValue(Activity, value); }
         }
 
@@ -316,7 +325,7 @@ namespace project.ViewModel
         }
         private void updateUp100GmTotalComponents(AddFoodItemViewModel addFoodItemViewModel)
         {
-            TotalCarbsProperty=(float.Parse(TotalCarbsProperty)+ addFoodItemViewModel.Carbs100Gm).ToString();
+            TotalCarbsProperty = (float.Parse(TotalCarbsProperty) + addFoodItemViewModel.Carbs100Gm).ToString();
             TotalProteinsProperty = (float.Parse(TotalProteinsProperty) + addFoodItemViewModel.Proteins100Gm).ToString();
             TotalFatsProperty = (float.Parse(TotalFatsProperty) + addFoodItemViewModel.Fats100Gm).ToString();
             TotalCaloriesProperty = (float.Parse(TotalCaloriesProperty) + addFoodItemViewModel.Calories100Gm).ToString();
@@ -332,10 +341,10 @@ namespace project.ViewModel
 
         private void updateDownItemTotalComponents(AddFoodItemViewModel addFoodItemViewModel)
         {
-            TotalCarbsProperty = (float.Parse(TotalCarbsProperty) - (addFoodItemViewModel.Carbs100Gm)*(int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
-            TotalProteinsProperty = (float.Parse(TotalProteinsProperty) - (addFoodItemViewModel.Proteins100Gm)*(int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
-            TotalFatsProperty = (float.Parse(TotalFatsProperty) - (addFoodItemViewModel.Fats100Gm)*(int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
-            TotalCaloriesProperty = (float.Parse(TotalCaloriesProperty) - (addFoodItemViewModel.Calories100Gm)* (int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
+            TotalCarbsProperty = (float.Parse(TotalCarbsProperty) - (addFoodItemViewModel.Carbs100Gm) * (int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
+            TotalProteinsProperty = (float.Parse(TotalProteinsProperty) - (addFoodItemViewModel.Proteins100Gm) * (int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
+            TotalFatsProperty = (float.Parse(TotalFatsProperty) - (addFoodItemViewModel.Fats100Gm) * (int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
+            TotalCaloriesProperty = (float.Parse(TotalCaloriesProperty) - (addFoodItemViewModel.Calories100Gm) * (int.Parse(addFoodItemViewModel.FoodAmountProperty))).ToString();
         }
 
         public void saveMeals()
@@ -351,8 +360,7 @@ namespace project.ViewModel
                     Name = item.FoodNameProperty,
                     Key = item.FoodKey,
                     AmountGm = int.Parse(item.FoodAmountProperty),
-                    Calories100G =
-                    item.Calories100Gm
+                    Calories100G = item.Calories100Gm
                 });
             }
 
@@ -363,8 +371,7 @@ namespace project.ViewModel
                     Name = item.FoodNameProperty,
                     Key = item.FoodKey,
                     AmountGm = int.Parse(item.FoodAmountProperty),
-                    Calories100G =
-                    item.Calories100Gm
+                    Calories100G = item.Calories100Gm
                 });
             }
 
@@ -375,8 +382,7 @@ namespace project.ViewModel
                     Name = item.FoodNameProperty,
                     Key = item.FoodKey,
                     AmountGm = int.Parse(item.FoodAmountProperty),
-                    Calories100G =
-                    item.Calories100Gm
+                    Calories100G = item.Calories100Gm
                 });
             }
 
@@ -387,12 +393,12 @@ namespace project.ViewModel
                     Name = item.FoodNameProperty,
                     Key = item.FoodKey,
                     AmountGm = int.Parse(item.FoodAmountProperty),
-                    Calories100G =
-                    item.Calories100Gm
+                    Calories100G = item.Calories100Gm
                 });
             }
-            addDailyFoodModel.saveDailyFood(new DailyFood { CurrentDate=DateProperty, DailyActivity=ActivityProperty, DailyMood=MoodProperty, EmailAddress=EmailAddressProperty, TotalCalories=float.Parse(TotalCaloriesProperty), TotalCarbs=float.Parse(TotalCarbsProperty), TotalFats=float.Parse(TotalFatsProperty), TotalPortiens=float.Parse(TotalProteinsProperty)  });
-            addDailyFoodModel.saveMeals(DateProperty,EmailAddressProperty,breakfast, brunch, dinner, snacks);
+            addDailyFoodModel.saveDailyFood(new DailyFood { CurrentDate = DateProperty, DailyActivity = (ACTIVITY)ActivityProperty, DailyMood = (MOOD)MoodProperty, EmailAddress = EmailAddressProperty, TotalCalories = float.Parse(TotalCaloriesProperty), TotalCarbs = float.Parse(TotalCarbsProperty), TotalFats = float.Parse(TotalFatsProperty), TotalPortiens = float.Parse(TotalProteinsProperty) });
+            addDailyFoodModel.saveMeals(DateProperty, EmailAddressProperty, breakfast, brunch, dinner, snacks);
+            
         }
 
 
@@ -415,14 +421,14 @@ namespace project.ViewModel
 
         }
 
-      
+
         private void PropertyChangedFoodItemBreakfast(object sender, PropertyChangedEventArgs e)
         {
             AddFoodItemViewModel addFoodItemViewModel = (sender as AddFoodItemViewModel);
             switch (e.PropertyName)
             {
                 case "deleteItem":
-                    
+
                     BreakfastCaloriesProperty = (float.Parse(BreakfastCaloriesProperty) - float.Parse(addFoodItemViewModel.CaloriesProperty)).ToString();
                     updateDownItemTotalComponents(addFoodItemViewModel);
                     BreakfastListProperty.Remove(addFoodItemViewModel);
@@ -433,7 +439,7 @@ namespace project.ViewModel
                         BreakfastCaloriesProperty = (float.Parse(BreakfastCaloriesProperty) + ((sender as AddFoodItemViewModel).Calories100Gm)).ToString();
                         updateUp100GmTotalComponents(addFoodItemViewModel);
                     }
-                        break;
+                    break;
                 case "FoodAmountProperty"://the amount of the item is decreased
                     if (BreakfastCaloriesProperty != null && (sender as AddFoodItemViewModel).FoodAmountProperty != null)
                     {

@@ -38,7 +38,7 @@
             </Grid>
 
 
-            <Image x:Name="image" Grid.Column="0" Grid.Row="1" Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\ImageFoodItem.png"/>
+            <Image x:Name="image" Grid.Column="0" Grid.Row="1" Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\ImageFoodItem.png"/>
             <!--TextBox x:Name="proxyLabel" Background="Transparent" BorderThickness="0" Foreground="Transparent" IsEnabled="False" Text="{Binding ElementName=numericUpDownUserControl , Path=DataContext.TextNumValueProperty}" TextChanged="proxyLabel_TextChanged"/-->
                 <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,0.2,0.2" Grid.RowSpan="2" >
                 <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
                     <RowDefinition Height="51*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <local:NumericUpDownUserControl x:Name="numericUpDownUserControl"  Grid.Row="1" TextNumValueProperty="{Binding FoodAmountProperty, Mode=OneWayToSource}"/>
+                <local:NumericUpDownUserControl x:Name="numericUpDownUserControl"  Grid.Row="1" TextNumValueProperty="{Binding FoodAmountProperty,Mode=TwoWay }" />
             </Grid>
             <Grid Grid.Row="1" Grid.Column="7">
                 <Grid.RowDefinitions>
@@ -73,7 +73,7 @@
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="buttonX" Grid.Row="1" Background="Transparent" BorderThickness="0" Command="{Binding deleteCommand}" CommandParameter="{Binding}" >
-                    <Image Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\exitImage.gif"/>
+                    <Image Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\exitImage.gif"/>
                 </Button>
             </Grid>
         </Grid>

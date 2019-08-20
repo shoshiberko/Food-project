@@ -29,7 +29,7 @@ namespace project.View
         public MySliderUserControl()
         {
             InitializeComponent();
-            this.DataContext = this;
+            myGrid.DataContext = this;
         }
 
         /*

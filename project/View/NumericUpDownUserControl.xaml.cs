@@ -44,7 +44,7 @@ namespace project.View
 
         private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextNumValueProperty = (sender as TextBox).Text;
+                TextNumValueProperty = (sender as TextBox).Text;
         }
     }
 

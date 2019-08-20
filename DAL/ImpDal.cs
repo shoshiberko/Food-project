@@ -7,12 +7,30 @@ using BE;
 using System.Xml;
 using System.Net;
 using System.IO;
+using System.Data.Entity.Migrations;
+using System.Data.Entity;
 
 namespace DAL
 {
     public class ImpDal : IDal
     {
         IAPIFood apiFood = new ImpAPIFood();
+        public float DecreaseProteins { get; set; }
+        public float DecreaseFats { get; set; }
+        public float DecreaseCarbs { get; set; }
+        public bool addWeekGoals(WeekGoals weekGoals)
+        {
+            try
+            {
+                using (var db = new FoodContext())
+                {
+                    db.WeekGoals.Add(weekGoals);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
         public bool addDailyFood(DailyFood dailyFood)
         {
             try
@@ -24,7 +42,7 @@ namespace DAL
                 }
                 return true;
             }
-            catch (Exception e){ return false; }
+            catch (Exception e) { return false; }
         }
 
         public bool addMeal(Meal meal)
@@ -46,29 +64,16 @@ namespace DAL
             try
             {
                 using (var db = new FoodContext())
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-            }
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
                 return true;
             }
             catch (Exception e) { return false; }
         }
 
-        public bool addWeekGoals(WeekGoals weekGoals)
-        {
-            try
-            {
-                using (var db = new FoodContext())
-            {
-                db.WeekGoals.Add(weekGoals);
-                db.SaveChanges();
-            }
-            return true;
-            }
-            catch (Exception e) { return false; }
-        }
-
+      
         public List<DailyFood> getAllDailyFoods()
         {
             using (var db = new FoodContext())
@@ -148,20 +153,21 @@ namespace DAL
             using (var db = new FoodContext())
             {
                 var query = ((from b in db.DailyFoods
-                              where  b.CurrentDate==currentDate && b.EmailAddress.Equals(emailAddress)
-                              select b));
-                List < DailyFood > lst= query.ToList<DailyFood>();
-                if (lst == null) return null;
-                return (lst).FirstOrDefault();
+                              where b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day && b.CurrentDate.Month == currentDate.Month
+                              && b.CurrentDate.Year == currentDate.Year
+                              select b)).ToList();
+
+                return query.FirstOrDefault();
             }
         }
 
-        public List<Meal> getMeal(DateTime currentDate,String emailAddress)
+        public List<Meal> getMeal(DateTime currentDate, String emailAddress)
         {
             using (var db = new FoodContext())
             {
                 return ((from b in db.Meals
-                         where b.CurrentDate == currentDate && b.EmailAddress==emailAddress
+                         where b.CurrentDate.Day == currentDate.Day && b.CurrentDate.Month == currentDate.Month
+                              && b.CurrentDate.Year == currentDate.Year && b.EmailAddress == emailAddress
                          select b).ToList());
             }
         }
@@ -182,22 +188,15 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public WeekGoals getWeekGoals(DateTime sundayDate)
-        {
-            using (var db = new FoodContext())
-            {
-                return ((from b in db.WeekGoals
-                         where b.SundayDate == sundayDate
-                         select b).ToList()).FirstOrDefault(null);
-            }
-        }
+       
 
         public List<Meal> getListOfMeal(DateTime currentDate, String emailAddress, MEALTIME mealTime)
         {
             using (var db = new FoodContext())
             {
                 return ((from b in db.Meals
-                         where b.CurrentDate == currentDate && b.EmailAddress == emailAddress && b.MealTime==mealTime
+                         where b.CurrentDate.Day == currentDate.Day && b.CurrentDate.Month == currentDate.Month
+                              && b.CurrentDate.Year == currentDate.Year && b.EmailAddress.Equals(emailAddress) && b.MealTime == mealTime
                          select b).ToList());
             }
         }
@@ -208,34 +207,151 @@ namespace DAL
             {
                 using (var db = new FoodContext())
                 {
-                    db.DailyFoods.Remove(getDailyFood(emailAddress,currentDate));
+                    db.DailyFoods.Remove(getDailyFood(emailAddress, currentDate));
                     db.SaveChanges();
                 }
                 return true;
             }
             catch (Exception e) { return false; }
         }
-
-        public bool updateMeals(DateTime currentDate, String emailAddress,List<FoodItem>breakfast, List<FoodItem> brunch, List<FoodItem> dinner, List<FoodItem> snacks)
+        
+        public bool updateMeals(DateTime currentDate, String emailAddress, List<FoodItem> breakfast, List<FoodItem> brunch, List<FoodItem> dinner, List<FoodItem> snacks)
         {
             try
             {
+               /* DecreaseProteins = 0;
+                DecreaseFats = 0;
+                DecreaseCarbs = 0;*/
                 using (var db = new FoodContext())
                 {
-                    var queryList= ((from b in db.Meals
-                                     where b.CurrentDate == currentDate && b.EmailAddress == emailAddress
-                                     select b).ToList());
-                    foreach(var item in queryList)
-                         db.Meals.Remove(item);
-                    foreach(var breakfastItem in breakfast)
-                        db.Meals.Add(new Meal() {CurrentDate=currentDate, EmailAddress=emailAddress, MealTime=MEALTIME.BREAKFAST, FoodKey=breakfastItem.Key, FoodName=breakfastItem.Name, FoodAmount=breakfastItem.AmountGm });
-                    foreach (var brunchItem in brunch)
-                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BRUNCH, FoodKey = brunchItem.Key, FoodName = brunchItem.Name, FoodAmount = brunchItem.AmountGm });
+                    foreach (var breakfastItem in breakfast)
+                    {
+                        Meal meal = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BREAKFAST, FoodKey = breakfastItem.Key, FoodName = breakfastItem.Name, FoodAmount = breakfastItem.AmountGm, Calories100Gm = breakfastItem.Calories100G };
+                        var mealTmp = db.Meals.SingleOrDefault(m => m.EmailAddress.Equals(meal.EmailAddress) && (m.CurrentDate.Day == meal.CurrentDate.Day && m.CurrentDate.Month == meal.CurrentDate.Month && m.CurrentDate.Year == meal.CurrentDate.Year) && m.MealTime == meal.MealTime && m.FoodKey.Equals(meal.FoodKey));
+                        if (mealTmp != null)
+                        {
+                            db.Entry(mealTmp).CurrentValues.SetValues(meal);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.Meals.Add(meal);
+                            db.SaveChanges();
+                        }
+                    }
+                    var queryBreakfast = ((from b in db.Meals
+                                           where b.MealTime == MEALTIME.BREAKFAST && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day&&
+                                           b.CurrentDate.Month == currentDate.Month&& b.CurrentDate.Year == currentDate.Year
+                                           select new FoodItem() { AmountGm=b.FoodAmount, Calories100G=b.Calories100Gm, Key=b.FoodKey, Name=b.FoodName }).ToList());
+                    foreach (var item in queryBreakfast)
+                    {
+                      if (breakfast.Find(c=>c.Name.Equals(item.Name)&&c.Key.Equals(item.Key)&&c.Calories100G==item.Calories100G&&c.AmountGm==item.AmountGm)==null)
+                        {
+                            Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BREAKFAST, FoodKey = item.Key, FoodName = item.Name, FoodAmount =item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats-= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
+                            db.Meals.Attach(m);
+                            db.Meals.Remove(m);
+                            db.SaveChanges();
+                        }
+                    }
+                        foreach (var brunchItem in brunch)
+                    {
+                        Meal meal = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BRUNCH, FoodKey = brunchItem.Key, FoodName = brunchItem.Name, FoodAmount = brunchItem.AmountGm, Calories100Gm = brunchItem.Calories100G };
+                        var mealTmp = db.Meals.SingleOrDefault(m => m.EmailAddress.Equals(meal.EmailAddress) && (m.CurrentDate.Day == meal.CurrentDate.Day && m.CurrentDate.Month == meal.CurrentDate.Month && m.CurrentDate.Year == meal.CurrentDate.Year) && m.MealTime == meal.MealTime && m.FoodKey.Equals(meal.FoodKey));
+                        if (mealTmp != null)
+                        {
+                            db.Entry(mealTmp).CurrentValues.SetValues(meal);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.Meals.Add(meal);
+                            db.SaveChanges();
+                        }
+                    }
+                    var queryBrunch = ((from b in db.Meals
+                                        where b.MealTime == MEALTIME.BRUNCH && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
+                                        select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
+                    foreach (var item in queryBrunch)
+                    {
+                        if (brunch.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        {
+                            Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BRUNCH, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
+                            db.Meals.Attach(m);
+                            db.Meals.Remove(m);
+                            db.SaveChanges();
+                        }
+                    }
                     foreach (var dinnerItem in dinner)
-                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.DINNER, FoodKey = dinnerItem.Key, FoodName = dinnerItem.Name, FoodAmount = dinnerItem.AmountGm });
+                    {
+                        Meal meal = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.DINNER, FoodKey = dinnerItem.Key, FoodName = dinnerItem.Name, FoodAmount = dinnerItem.AmountGm, Calories100Gm = dinnerItem.Calories100G };
+                        var mealTmp = db.Meals.SingleOrDefault(m => m.EmailAddress.Equals(meal.EmailAddress) && (m.CurrentDate.Day == meal.CurrentDate.Day && m.CurrentDate.Month == meal.CurrentDate.Month && m.CurrentDate.Year == meal.CurrentDate.Year) && m.MealTime == meal.MealTime && m.FoodKey.Equals(meal.FoodKey));
+                        if (mealTmp != null)
+                        {
+                            db.Entry(mealTmp).CurrentValues.SetValues(meal);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.Meals.Add(meal);
+                            db.SaveChanges();
+                        }
+                    }
+                    var queryDinner= ((from b in db.Meals
+                                       where b.MealTime == MEALTIME.DINNER && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
+                                       select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
+                    foreach (var item in queryDinner)
+                    {
+                        if (dinner.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        {
+                            Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.DINNER, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
+                            db.Meals.Attach(m);
+                            db.Meals.Remove(m);
+                            db.SaveChanges();
+                        }
+                    }
                     foreach (var snacksItem in snacks)
-                        db.Meals.Add(new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.SNACKS, FoodKey = snacksItem.Key, FoodName = snacksItem.Name, FoodAmount = snacksItem.AmountGm });
-
+                    {
+                        Meal meal = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.SNACKS, FoodKey = snacksItem.Key, FoodName = snacksItem.Name, FoodAmount = snacksItem.AmountGm, Calories100Gm = snacksItem.Calories100G };
+                        var mealTmp = db.Meals.SingleOrDefault(m => m.EmailAddress.Equals(meal.EmailAddress) && (m.CurrentDate.Day == meal.CurrentDate.Day && m.CurrentDate.Month == meal.CurrentDate.Month && m.CurrentDate.Year == meal.CurrentDate.Year) && m.MealTime == meal.MealTime && m.FoodKey.Equals(meal.FoodKey));
+                        if (mealTmp != null)
+                        {
+                            db.Entry(mealTmp).CurrentValues.SetValues(meal);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            db.Meals.Add(meal);
+                            db.SaveChanges();
+                        }
+                    }
+                    var querySnacks = ((from b in db.Meals
+                                        where b.MealTime == MEALTIME.SNACKS && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
+                                        select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
+                    foreach (var item in querySnacks)
+                    {
+                        if (snacks.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        {
+                            Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.SNACKS, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
+                            db.Meals.Attach(m);
+                            db.Meals.Remove(m);
+                            db.SaveChanges();
+                        }
+                    }
                     db.SaveChanges();
                 }
                 return true;
@@ -249,7 +365,7 @@ namespace DAL
             {
                 using (var db = new FoodContext())
                 {
-                    List<WeekGoals> wList = getWeekGoalsByPredicate(w=>w.EmailAddress==emailAddress);
+                    List<WeekGoals> wList = getWeekGoalsByPredicate(w => w.EmailAddress == emailAddress);
                     List<DailyFood> dList = getDailyFoodsByPredicate(d => d.EmailAddress == emailAddress);
                     if (wList == null && dList == null)// if there are no dailyFoods and no weekGoals with user's emailAdress -as foreign key
                     {
@@ -264,13 +380,53 @@ namespace DAL
             catch (Exception e) { return false; }
         }
 
-        public bool removeWeekGoals(DateTime sundayDate)
+      
+
+        public bool updateDailyFood(DailyFood dailyFood)
+        {
+            try
+            {
+                using (var myDb = new FoodContext())
+                {
+                    var daily = myDb.DailyFoods.SingleOrDefault(d => d.EmailAddress.Equals(dailyFood.EmailAddress) && (d.CurrentDate.Day == dailyFood.CurrentDate.Day && d.CurrentDate.Month == dailyFood.CurrentDate.Month && d.CurrentDate.Year == dailyFood.CurrentDate.Year));
+                    if (daily != null)
+                    {
+                        myDb.Entry(daily).CurrentValues.SetValues(dailyFood);
+                        myDb.SaveChanges();
+                    }
+
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+
+        public bool updateUser(User user)
+        {
+            try
+            {
+                using (var myDb = new FoodContext())
+                {
+                    var userTemp = myDb.Users.SingleOrDefault(d => d.EmailAddress.Equals(user.EmailAddress));
+                    if (userTemp != null)
+                    {
+                        myDb.Entry(userTemp).CurrentValues.SetValues(user);
+                        myDb.SaveChanges();
+                    }
+
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+
+        public bool removeWeekGoals(string emailAddress, DateTime sundayDate)
         {
             try
             {
                 using (var db = new FoodContext())
                 {
-                    db.WeekGoals.Remove(getWeekGoals(sundayDate));
+                    db.WeekGoals.Remove(getWeekGoals(emailAddress, sundayDate));
                     db.SaveChanges();
                 }
                 return true;
@@ -278,48 +434,32 @@ namespace DAL
             catch (Exception e) { return false; }
         }
 
-        public bool updateDailyFood(DailyFood dailyFood)
+        public WeekGoals getWeekGoals(string emailAddress, DateTime sundayDate)
         {
-            try
+            using (var db = new FoodContext())
             {
-                using (var db = new FoodContext())
-                {
-                    //remove and add = update
-                    db.DailyFoods.Remove(getDailyFood(dailyFood.EmailAddress,dailyFood.CurrentDate));
-                    db.DailyFoods.Add(dailyFood);
-                    db.SaveChanges();
-                }
-                return true;
-            }
-            catch (Exception e) { return false; }
-    }
+                var query = ((from b in db.WeekGoals
+                              where b.EmailAddress.Equals(emailAddress) && b.SundayDate.Day == sundayDate.Day && b.SundayDate.Month == sundayDate.Month
+                              && b.SundayDate.Year == sundayDate.Year
+                              select b)).ToList();
 
-        public bool updateUser(User user)
-        {
-            try
-            {
-                using (var db = new FoodContext())
-                {
-                    //remove and add = update
-                    db.Users.Remove(getUser(user.EmailAddress));
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                }
-                return true;
+                return query.FirstOrDefault();
             }
-            catch (Exception e) { return false; }
         }
 
         public bool updateWeekGoals(WeekGoals weekGoals)
         {
             try
             {
-                using (var db = new FoodContext())
+                using (var myDb = new FoodContext())
                 {
-                    //remove and add = update
-                    db.WeekGoals.Remove(getWeekGoals(weekGoals.SundayDate));
-                    db.WeekGoals.Add(weekGoals);
-                    db.SaveChanges();
+                    var weekGoalsTemp = myDb.WeekGoals.SingleOrDefault(d => d.EmailAddress.Equals(weekGoals.EmailAddress) && (d.SundayDate.Date == weekGoals.SundayDate));
+                    if (weekGoalsTemp != null)
+                    {
+                        myDb.Entry(weekGoalsTemp).CurrentValues.SetValues(weekGoals);
+                        myDb.SaveChanges();
+                    }
+
                 }
                 return true;
             }
@@ -337,6 +477,7 @@ namespace DAL
         {
             return apiFood.getFoodDetails(keyFood);
         }
-#endregion
+        #endregion
     }
 }
+

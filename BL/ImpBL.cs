@@ -89,13 +89,13 @@ namespace BL
         {
             return myDal.updateWeekGoals(weekGoals);
         }
-        public bool removeWeekGoals(DateTime sundayDate)
+        public bool removeWeekGoals(string emailAddress,DateTime sundayDate)
         {
-            return myDal.removeWeekGoals(sundayDate);
+            return myDal.removeWeekGoals(emailAddress,sundayDate);
         }
-        public WeekGoals getWeekGoals(DateTime sundayDate)
+        public WeekGoals getWeekGoals(String emailAddress, DateTime sundayDate)
         {
-            return myDal.getWeekGoals(sundayDate);
+            return myDal.getWeekGoals(emailAddress,sundayDate);
         }
         public List<WeekGoals> getAllWeekGoals()
         {

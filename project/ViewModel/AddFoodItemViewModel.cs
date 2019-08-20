@@ -57,12 +57,29 @@ namespace project.ViewModel
                 if (value != this.foodName)
                 {
                     this.foodName = value;
-                   // NotifyPropertyChanged("FoodNameProperty");
+                    // NotifyPropertyChanged("FoodNameProperty");
                 }
             }
         }
 
-        public String FoodKey { get; set; }
+        private String foodKey;
+        public String FoodKey { get { return foodKey; } set {
+                foodKey = value;
+                this.Carbs100Gm = addFoodItemModel.getCarbs(value);
+                this.Fats100Gm = addFoodItemModel.getFats(value);
+                this.Proteins100Gm = addFoodItemModel.getProteins(value);
+                this.Calories100Gm=addFoodItemModel.getCalories100GM(value);
+                FoodAmountProperty = "1";
+            } }
+
+      /*  public static readonly DependencyProperty Amount = DependencyProperty.Register("AmountProperty", typeof(String), typeof(AddFoodItemViewModel));
+        public String AmountProperty
+        {
+            get { return (String)GetValue(Amount); }
+            set { SetValue(Amount, value); FoodAmountProperty = value; }
+        }*/
+
+
 
         private String foodAmount;
         public String FoodAmountProperty
@@ -74,13 +91,22 @@ namespace project.ViewModel
                 {
                     if (value.Equals("0"))//if the item would be deleted
                         NotifyPropertyChanged("deleteItem");
+                    /*else if(value.Equals("1"))
+                    {
+                        this.foodAmount = value;
+                        // AmountProperty = value;
+                        CaloriesProperty = (Calories100Gm * float.Parse(value)).ToString();
+                        GMProperty = (int.Parse(value) * 100).ToString() + "g";
+                        NotifyPropertyChanged("FoodAmountPropertyUp");
+                    }?*/
                     else//the amount increased or decreased
                     {
                         String s = "";
                         if (foodAmount != null && foodAmount != "" && float.Parse(this.foodAmount) < float.Parse(value) || (foodAmount == null && value != null))//if it is rise
                             s = "Up";
                         this.foodAmount = value;
-                        CaloriesProperty = (Calories100Gm * float.Parse(value)).ToString();
+                        // AmountProperty = value;
+                         CaloriesProperty = (Calories100Gm * float.Parse(value)).ToString();
                         GMProperty = (int.Parse(value) * 100).ToString() + "g";
                         NotifyPropertyChanged("FoodAmountProperty" + s);
                     }
@@ -114,6 +140,7 @@ namespace project.ViewModel
         {
             addFoodItemModel = new AddFoodItemModel();
             deleteCommand = new DeleteFoodItemCommand();
+            // AmountProperty = "1";
         }
     }
 }
