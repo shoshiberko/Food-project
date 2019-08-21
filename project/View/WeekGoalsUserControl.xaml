@@ -102,10 +102,10 @@
                     <RowDefinition Height="30*"/>
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\food.png"/>
-                <Image Grid.Row="2" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sunflower-oil.png"/>
-                <Image Grid.Row="4" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\fried-egg.png"/>
-                <Image Grid.Row="6"  Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sandwich.png" />
+                <Image Grid.Row="0" Source="/images/food.png"/>
+                <Image Grid.Row="2" Source="/images/sunflower-oil.png"/>
+                <Image Grid.Row="4" Source="/images/fried-egg.png"/>
+                <Image Grid.Row="6"  Source="/images/sandwich.png" />
             </Grid>
         </Grid>
         <Grid Grid.Row="3">

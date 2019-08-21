@@ -66,7 +66,7 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="1" Source="\images\weightPink.png" Margin="95,-16,-36,-24" Grid.ColumnSpan="2"/>
+                <Image Grid.Column="1" Source="/images/weightPink.png" Margin="95,-16,-36,-24" Grid.ColumnSpan="2"/>
             </Grid>
         </Grid>
     </Grid>

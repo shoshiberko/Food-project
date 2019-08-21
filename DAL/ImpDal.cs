@@ -458,7 +458,8 @@ namespace DAL
             {
                 using (var myDb = new FoodContext())
                 {
-                    var weekGoalsTemp = myDb.WeekGoals.SingleOrDefault(d => d.EmailAddress.Equals(weekGoals.EmailAddress) && (d.SundayDate.Date == weekGoals.SundayDate));
+                    var weekGoalsTemp = myDb.WeekGoals.SingleOrDefault(d => d.EmailAddress.Equals(weekGoals.EmailAddress) && (d.SundayDate.Day== weekGoals.SundayDate.Day)
+                                && (d.SundayDate.Year == weekGoals.SundayDate.Year) && (d.SundayDate.Month == weekGoals.SundayDate.Month));
                     if (weekGoalsTemp != null)
                     {
                         myDb.Entry(weekGoalsTemp).CurrentValues.SetValues(weekGoals);

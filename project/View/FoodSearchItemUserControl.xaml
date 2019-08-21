@@ -28,9 +28,9 @@
                 <RowDefinition Height="24*"/>
                 <RowDefinition Height="51*"/>
                 <RowDefinition Height="25*"/>
-            </Grid.RowDefinitions>
-            <Image x:Name="image" Grid.Row="1" Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\ImageFoodItem.png"/>
-        </Grid>
+            </Grid.RowDefinitions> 
+            <Image x:Name="image" Grid.Row="1" Source="/images/ImageFoodItem.png"/>
+        </Grid> 
         <Popup Visibility="Visible" Placement="MousePoint" HorizontalAlignment="Center" IsOpen="{Binding MyIsOpenProperty, Mode=OneWay}"  VerticalAlignment="Center" Height="300" Width="500" Opened="Popup_Opened">
 
             <Border BorderBrush="Gray" BorderThickness="1">

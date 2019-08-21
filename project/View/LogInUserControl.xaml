@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="300*"/>
                 <ColumnDefinition Width="120*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="1" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\logo.png"/>
+            <Image Grid.Column="1" Source="/images/logo.png"/>
 
         </Grid>
         <Grid Grid.Row="2">

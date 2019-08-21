@@ -35,7 +35,7 @@
             <Grid Grid.Row="1" Grid.Column="2" Background="Gray"/>
             <Grid Grid.Row="1" Grid.Column="3" Background="Gray"/>
             <Grid Grid.Row="1" Grid.Column="4" Background="Gray"/>
-            <Image Source="C:\Users\shosh\Desktop\foodProject\foodProject\project\project\images\logo.png" Grid.Column="1"/>
+            <Image Source="/images/logo.png" Grid.Column="1"/>
             <Grid Grid.Column="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="11*"/>

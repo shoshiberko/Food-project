@@ -95,16 +95,16 @@
                 <Label Content="  Mood:" FontSize="16" FontWeight="Bold" Grid.Column="0"/>
                 <ComboBox x:Name="moodComboBox" Grid.Column="2" BorderThickness="2" SelectedIndex="{Binding Path=MoodProperty}" Margin="0,5,5,5">
                     <ComboBoxItem x:Name="happyComboBoxItem"> 
-                        <Image Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\happy.png" />
+                        <Image Source="/images/happy.png" />
                     </ComboBoxItem>
                     <ComboBoxItem x:Name="sadComboBoxItem">
-                        <Image Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\sad.png"/>
+                        <Image Source="/images/sad.png"/>
                     </ComboBoxItem>
                     <ComboBoxItem x:Name="angryComboBoxItem">
-                        <Image Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\angry.png"/>
+                        <Image Source="/images/angry.png"/>
                     </ComboBoxItem>
                     <ComboBoxItem x:Name="unDefineComboBoxItem">
-                        <Image Source="C:\Users\HP\Desktop\project\foodProject\foodProject\foodProject\project\project\images\unDefine.png"/>
+                        <Image Source="/images/unDefine.png"/>
                     </ComboBoxItem>
                 </ComboBox>
             </Grid>

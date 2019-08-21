@@ -26,7 +26,7 @@ namespace project.ViewModel
             set { SetValue(sunday, value); }
         }
 
-        public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(WeekGoalsUserControlVM));
+        public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(WeekGoalsUserControlVM),new PropertyMetadata("shosh@gmail.com"));
         public String EmailAddressProperty
         {
             get { return (String)GetValue(EmailAddress); }
@@ -89,7 +89,7 @@ namespace project.ViewModel
         private void OnSelectedSundayPropertyChanged(DateTime sunday)
         {
             WeekGoals wg = Model.getWeekGoals(EmailAddressProperty, sunday);
-            loadToScreen(wg);
+            loadWeekGoalsToProperties(wg);//load week goals of sunday's week of the user if it setted, else it clears the properties with 0
             
             if ((DateTime.Today.AddDays(0 - (int)DateTime.Today.DayOfWeek)).CompareTo(sunday)>0)//the selected week has already passed
                 //therefore user can't set the goals
@@ -100,7 +100,7 @@ namespace project.ViewModel
                 IsEnabledProperty = true;
         }
 
-        private void loadToScreen(WeekGoals wg)//loads the WeekGoals- wg to the screen 
+        private void loadWeekGoalsToProperties(WeekGoals wg)//loads the WeekGoals- wg to the properties(to the screen) 
         {
             if (wg != null)
             {
@@ -108,6 +108,13 @@ namespace project.ViewModel
                 this.CarbsProperty = wg.GoalCarbs.ToString();
                 this.FatsProperty = wg.GoalFats.ToString();
                 this.ProteinsProperty = wg.GoalProteins.ToString();
+            }
+            else//clear
+            {
+                this.CaloriesProperty = "0";
+                this.CarbsProperty = "0";
+                this.FatsProperty = "0";
+                this.ProteinsProperty = "0";
             }
         }
     }
