@@ -12,7 +12,7 @@
         <pl:CheckToFemaleGenderEnumConverter x:Key="CheckToFemaleGenderEnumConverter"/>
         <pl:CheckToMaleGenderEnumConverter x:Key="CheckToMaleGenderEnumConverter"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="myGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="113*"/>
@@ -42,6 +42,17 @@
                     <RowDefinition Height="6*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="1" Content="My Food4U Account" Foreground="Gray"/>
+            </Grid>
+            <Grid Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="11*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="1" Content="x" FontSize="16" Command="{Binding RegisterXCommand}" CommandParameter="{Binding}"> </Button>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
@@ -150,7 +161,7 @@
                             <ColumnDefinition Width="42*"/>
                         </Grid.ColumnDefinitions>
 
-                        <DatePicker x:Name="birthDatePicker" SelectedDate="{Binding Path=BirthDateString, Mode=OneWayToSource}" Grid.Row="1" Grid.Column="1" Background="White"  DisplayDateEnd="{Binding Path=MyDisplayDateEnd ,Mode=OneWay}"/>
+                        <DatePicker x:Name="birthDatePicker" SelectedDate="{Binding Path=BirthDate, Mode=OneWayToSource}" Grid.Row="1" Grid.Column="1" Background="White"  DisplayDateEnd="{Binding Path=MyDisplayDateEnd ,Mode=OneWay}"/>
 
                     </Grid>
                     <Grid Grid.Row="6" Grid.Column="1" >
@@ -210,7 +221,7 @@
                             <ColumnDefinition Width="127*"/>
                             <ColumnDefinition Width="310*"/>
                         </Grid.ColumnDefinitions>
-                        <PasswordBox x:Name="passwordTextBox"  local:PasswordHelper.BindPassword="True" local:PasswordHelper.BoundPassword="{Binding Path=MyPassword, Mode=OneWayToSource}"  MaxLength="15"  Grid.Row="1" Grid.Column="1"/>
+                        <PasswordBox x:Name="passwordTextBox"  local:PasswordHelper.BindPassword="True" local:PasswordHelper.BoundPassword="{Binding Path=MyPasswordProperty, Mode=OneWayToSource}"  MaxLength="15"  Grid.Row="1" Grid.Column="1"/>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -240,8 +251,8 @@
                 </Grid.RowDefinitions>
                 <Button x:Name="buttonNext" Content="Next" Grid.Column="1" Grid.Row="1" FontSize="20"  Background="#74d14c" FontWeight="Bold" BorderBrush="#FF7D7575" Command="{Binding ClickCommand}" CommandParameter="{Binding}">
                     <Button.Style>
-                       <Style TargetType="{x:Type Button}">
-                        <Setter Property="Foreground" Value="White"/>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Foreground" Value="White"/>
                             <Style.Triggers >
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -295,7 +306,7 @@
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding  ElementName=passwordTextBox, Path=Password}" Value="{x:Null}" />
+                                        <Condition Binding="{Binding MyPasswordProperty}" Value=""/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
                                     <Setter Property="Button.Foreground" Value="#ccff99" />
@@ -330,9 +341,16 @@
                                     <Setter Property="Button.Foreground" Value="#ccff99" />
                                 </MultiDataTrigger>
                             </Style.Triggers>
-                    </Style>
+                        </Style>
                     </Button.Style>
                 </Button>
+                <Popup Visibility="Visible" Placement="MousePoint" HorizontalAlignment="Center" IsOpen="{Binding ToolTipIsOpenRegisterProperty}" Height="20" Width="250"  >
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel Background="LightGray">
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding ToolTipTextProperty}"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
             </Grid>
         </Grid>
 

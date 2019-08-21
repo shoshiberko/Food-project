@@ -66,25 +66,33 @@
     <Compile Include="Commands\DeleteFoodItemCommand.cs" />
     <Compile Include="Commands\DownCommand.cs" />
     <Compile Include="Commands\GetFoodDetailsCommand.cs" />
+    <Compile Include="Commands\LogInCommand.cs" />
+    <Compile Include="Commands\RegisterCommand.cs" />
+    <Compile Include="Commands\RegisteredXCommand.cs" />
     <Compile Include="Commands\SaveDateMealsCommand.cs" />
     <Compile Include="Commands\SearchListItemCommand.cs" />
+    <Compile Include="Commands\SetGoalsCommand.cs" />
     <Compile Include="Commands\UpCommand.cs" />
     <Compile Include="Model\AddDailyFoodModel.cs" />
     <Compile Include="Model\AddFoodItemModel.cs" />
     <Compile Include="Model\FoodSearchItemModel.cs" />
     <Compile Include="Model\ImpBl.cs" />
+    <Compile Include="Model\LogInModel.cs" />
     <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="Model\SearchUserControlModel.cs" />
+    <Compile Include="Model\WeekGoalsUserControlModel.cs" />
     <Compile Include="ViewModel\AddDailyFoodViewModel.cs" />
     <Compile Include="ViewModel\AddFoodItemViewModel.cs" />
     <Compile Include="ViewModel\FoodDetailsViewModel.cs" />
     <Compile Include="ViewModel\FoodSearchItemViewModel.cs" />
+    <Compile Include="ViewModel\LogInUserControlVM.cs" />
     <Compile Include="ViewModel\NumericUpDownUserControlViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\EmailValidationRules.cs" />
     <Compile Include="ViewModel\FloatValidationRules.cs" />
     <Compile Include="ViewModel\IntValidationRules.cs" />
     <Compile Include="ViewModel\SearchUserControlViewModel.cs" />
+    <Compile Include="ViewModel\WeekGoalsUserControlVM.cs" />
     <Compile Include="View\FoodSearchItemUserControl.xaml.cs">
       <DependentUpon>FoodSearchItemUserControl.xaml</DependentUpon>
     </Compile>
@@ -107,8 +115,8 @@
     <Compile Include="View\SearchUserControl.xaml.cs">
       <DependentUpon>SearchUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl5.xaml.cs">
-      <DependentUpon>UserControl5.xaml</DependentUpon>
+    <Compile Include="View\LogInUserControl.xaml.cs">
+      <DependentUpon>LogInUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddFoodItem.xaml.cs">
       <DependentUpon>AddFoodItem.xaml</DependentUpon>
@@ -116,8 +124,8 @@
     <Compile Include="View\AddDailyFoodUserControl.xaml.cs">
       <DependentUpon>AddDailyFoodUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl8.xaml.cs">
-      <DependentUpon>UserControl8.xaml</DependentUpon>
+    <Compile Include="View\WeekGoalsUserControl.xaml.cs">
+      <DependentUpon>WeekGoalsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControl9.xaml.cs">
       <DependentUpon>UserControl9.xaml</DependentUpon>
@@ -169,7 +177,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl5.xaml">
+    <Page Include="View\LogInUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl8.xaml">
+    <Page Include="View\WeekGoalsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

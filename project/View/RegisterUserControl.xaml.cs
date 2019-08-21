@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace project.View
 {
@@ -22,13 +23,25 @@ namespace project.View
     public partial class RegisterUserControl : UserControl
     {
         RegisterViewModel registerViewModel;
+        public static readonly DependencyProperty IsDone = DependencyProperty.Register("IsDoneProperty", typeof(Boolean), typeof(RegisterUserControl));
+        public Boolean IsDoneProperty
+        {
+            get { return (Boolean)GetValue(IsDone); }
+            set { SetValue(IsDone, value); }
+        }
         public RegisterUserControl()
         {
             InitializeComponent();
             
             registerViewModel = new RegisterViewModel();
-            this.DataContext = registerViewModel;
+            registerViewModel.PropertyChanged += viewModelPropertyChanged;
+            myGrid.DataContext = registerViewModel;
         }
-        
+
+        private void viewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsDone")
+                IsDoneProperty = true;
+        }
     }
 }

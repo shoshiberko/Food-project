@@ -7,7 +7,7 @@
         xmlns:View="clr-namespace:project.View" x:Class="project.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800">
-    <View:AddDailyFoodUserControl/>
+    <View:LogInUserControl/>
 
 
 </Window>

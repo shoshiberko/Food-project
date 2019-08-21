@@ -21,10 +21,6 @@ namespace project.ViewModel
             var handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
-           /*if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }*/
         }
         
         public float Proteins100Gm { get; set; }
@@ -57,7 +53,6 @@ namespace project.ViewModel
                 if (value != this.foodName)
                 {
                     this.foodName = value;
-                   // NotifyPropertyChanged("FoodNameProperty");
                 }
             }
         }

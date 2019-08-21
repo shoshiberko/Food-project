@@ -79,7 +79,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="myGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="205*"/>
             <ColumnDefinition Width="14*"/>

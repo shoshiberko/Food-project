@@ -10,13 +10,14 @@ namespace BE
 {
     public class WeekGoals
     {
+        [Key, Column(Order = 0)]
         public String EmailAddress {get; set; }
-        [Key]
+        [Key, Column(Order = 1)]
         public DateTime SundayDate { get; set; }
         public int GoalCarbs { get; set; }
         public int GoalFats { get; set; }
         public int GoalCalories { get; set; }
-        public int GoalPortiens { get; set; }
+        public int GoalProteins { get; set; }
     }
 }
 

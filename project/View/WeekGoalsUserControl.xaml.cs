@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,17 @@ namespace project.View
     /// <summary>
     /// Interaction logic for UserControl8.xaml
     /// </summary>
-    public partial class UserControl8 : UserControl
+    public partial class WeekGoalsUserControl : UserControl
     {
-        public UserControl8()
+        public WeekGoalsUserControlVM Vm { get; set; }
+
+        
+
+       
+        public WeekGoalsUserControl()
         {
             InitializeComponent();
+            Vm = new WeekGoalsUserControlVM();
         }
     }
 }

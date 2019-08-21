@@ -24,8 +24,8 @@ namespace DAL
 
         bool addWeekGoals(WeekGoals weekGoals);
         bool updateWeekGoals(WeekGoals weekGoals);
-        bool removeWeekGoals(DateTime sundayDate);
-        WeekGoals getWeekGoals(DateTime sundayDate);
+        bool removeWeekGoals(string emailAddress,DateTime sundayDate);
+        WeekGoals getWeekGoals(string EmailAddress, DateTime sundayDate);
         List<WeekGoals> getAllWeekGoals();
         List<WeekGoals> getWeekGoalsByPredicate(Func<WeekGoals, bool> predicate);
 

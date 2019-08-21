@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using project.ViewModel;
 
 namespace project.View
 {
     /// <summary>
     /// Interaction logic for UserControl5.xaml
     /// </summary>
-    public partial class UserControl5 : UserControl
+    public partial class LogInUserControl : UserControl
     {
-        public UserControl5()
+        public LogInUserControlVM VM { get; set; }
+        public LogInUserControl()
         {
             InitializeComponent();
+            VM = new LogInUserControlVM();
+            myGrid.DataContext = VM;
         }
     }
 }

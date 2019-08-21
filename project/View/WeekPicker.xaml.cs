@@ -21,28 +21,34 @@ namespace project.View
     public partial class WeekPicker : UserControl
     {
         private bool flagOnUpdate;
+        public static readonly DependencyProperty sunday = DependencyProperty.Register("SundayProperty", typeof(DateTime), typeof(WeekPicker),new PropertyMetadata( DateTime.Today));
+        public DateTime SundayProperty
+        {
+            get { return (DateTime)GetValue(sunday); }
+            set { SetValue(sunday, value); }
+        }
 
-        public DateTime sunday { get; set; }
         public WeekPicker()
         {
             InitializeComponent();
             flagOnUpdate = false;
-
+            calendar.DisplayDateStart = (DateTime.Now.AddDays(0 - (int)DateTime.Now.DayOfWeek)).AddDays(-21);//3 weeks before sunday of this week
+            calendar.DisplayDateEnd = (DateTime.Now.AddDays(0 - (int)DateTime.Now.DayOfWeek)).AddDays(27);//4 weeks from sunday of this week
         }
-        private void addSelectedDates()
+        private void addSelectedDates()//marks the whole week of the selected date
         {
             flagOnUpdate = true;
             DateTime date = (DateTime)calendar.SelectedDate;
             calendar.SelectedDates.Clear();
-            sunday = date.AddDays(0 - (int)date.DayOfWeek);//the sunday of the selected week
-            for (int i = (int)sunday.DayOfWeek; i < 7; i++)
-                calendar.SelectedDates.Add(sunday.AddDays(i));
+            SundayProperty = date.AddDays(0 - (int)date.DayOfWeek);//the sunday of the selected week
+            for (int i = (int)SundayProperty.DayOfWeek; i < 7; i++)
+                calendar.SelectedDates.Add(SundayProperty.AddDays(i));
            
             flagOnUpdate = false;
         }
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (calendar.SelectedDate != null && flagOnUpdate==false)
+            if (calendar.SelectedDate != null && flagOnUpdate==false)//if its the first time
                 addSelectedDates();
         }
     }

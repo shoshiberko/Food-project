@@ -14,7 +14,9 @@ namespace BE
         public String EmailAddress { get; set; }
         [Key, Column(Order = 1)]
         public DateTime CurrentDate { get; set; }
+        [Key, Column(Order = 2)]
         public  MEALTIME MealTime { get; set; }
+        [Key, Column(Order = 3)]
         public String FoodKey { get; set; }
         public String FoodName { get; set; }
         public int FoodAmount { get; set; }

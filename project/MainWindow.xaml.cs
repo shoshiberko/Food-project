@@ -26,15 +26,18 @@ namespace project
         public MainWindow()
         {
             InitializeComponent();
-
-            /*using (var db = new FoodContext())
+            ImpBL bl = new ImpBL();
+            //bl.getUser("sbb@gmail.com");
+           /* using (var db = new FoodContext())
             {
+
                 db.Users.Add(new User() { EmailAddress = "shosh@gmail.com", Password ="12344321", BirthDate=DateTime.Now, LastUpdateCurrentWeight=DateTime.Now});
                 db.SaveChanges();
-            }*/
-         
+                 
+        }*/
+
 
         }
-        
+
     }
 }

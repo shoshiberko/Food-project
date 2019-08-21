@@ -20,8 +20,18 @@ namespace BL
             myDal = new ImpDal();
         }
         #region Users
+        float calculateBMI(float weightKG, float heightMeter)
+        {
+            return weightKG / (heightMeter * heightMeter);
+        }
         public bool addUser(User user)
         {
+            float goalBmi = calculateBMI(user.GoalWeight, user.Height / 100);
+            float currentBmi = calculateBMI(user.CurrentWeight, user.Height / 100);
+            if (currentBmi < 18.5 && goalBmi < 18.5 && goalBmi < currentBmi)
+                throw new Exception("Cannot add you, your BMI is too low and your goal's BMI is lower:(");
+            if (currentBmi > 25 && goalBmi > 25 && goalBmi > currentBmi)
+                throw new Exception("Cannot add you, your BMI is too high and your goal's BMI is higher:(");
             return myDal.addUser(user);
         }
         public bool updateUser(User user)
@@ -89,13 +99,13 @@ namespace BL
         {
             return myDal.updateWeekGoals(weekGoals);
         }
-        public bool removeWeekGoals(DateTime sundayDate)
+        public bool removeWeekGoals(string emailAddress,DateTime sundayDate)
         {
-            return myDal.removeWeekGoals(sundayDate);
+            return myDal.removeWeekGoals(emailAddress,sundayDate);
         }
-        public WeekGoals getWeekGoals(DateTime sundayDate)
+        public WeekGoals getWeekGoals(String emailAddress, DateTime sundayDate)
         {
-            return myDal.getWeekGoals(sundayDate);
+            return myDal.getWeekGoals(emailAddress,sundayDate);
         }
         public List<WeekGoals> getAllWeekGoals()
         {
