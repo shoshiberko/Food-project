@@ -40,9 +40,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="Syncfusion.SfChart.WPF, Version=17.2460.0.34, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=17.2460.0.34, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,21 +67,27 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddUserCommand.cs" />
     <Compile Include="Commands\ClosePopUpCommand.cs" />
+    <Compile Include="Commands\DailyFoodCommand.cs" />
     <Compile Include="Commands\DeleteFoodItemCommand.cs" />
     <Compile Include="Commands\DownCommand.cs" />
     <Compile Include="Commands\GetFoodDetailsCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\RegisteredXCommand.cs" />
+    <Compile Include="Commands\HomeCommand.cs" />
     <Compile Include="Commands\SaveDateMealsCommand.cs" />
+    <Compile Include="Commands\SearchFoodCommand.cs" />
     <Compile Include="Commands\SearchListItemCommand.cs" />
     <Compile Include="Commands\SetGoalsCommand.cs" />
     <Compile Include="Commands\UpCommand.cs" />
+    <Compile Include="Commands\WeekDetailsCommand.cs" />
+    <Compile Include="Commands\WeekGoalsCommand.cs" />
     <Compile Include="Model\AddDailyFoodModel.cs" />
     <Compile Include="Model\AddFoodItemModel.cs" />
     <Compile Include="Model\FoodSearchItemModel.cs" />
     <Compile Include="Model\ImpBl.cs" />
     <Compile Include="Model\LogInModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="Model\SearchUserControlModel.cs" />
     <Compile Include="Model\WeekGoalsUserControlModel.cs" />
@@ -86,6 +96,7 @@
     <Compile Include="ViewModel\FoodDetailsViewModel.cs" />
     <Compile Include="ViewModel\FoodSearchItemViewModel.cs" />
     <Compile Include="ViewModel\LogInUserControlVM.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NumericUpDownUserControlViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\EmailValidationRules.cs" />

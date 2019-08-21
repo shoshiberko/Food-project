@@ -15,6 +15,9 @@ namespace DAL
     public class ImpDal : IDal
     {
         IAPIFood apiFood = new ImpAPIFood();
+        public float DecreaseProteins { get; set; }
+        public float DecreaseFats { get; set; }
+        public float DecreaseCarbs { get; set; }
         public bool addWeekGoals(WeekGoals weekGoals)
         {
             try
@@ -216,13 +219,14 @@ namespace DAL
             }
             catch (Exception e) { return false; }
         }
-
-        public int CloriesDown { get; set; }
+        
         public bool updateMeals(DateTime currentDate, String emailAddress, List<FoodItem> breakfast, List<FoodItem> brunch, List<FoodItem> dinner, List<FoodItem> snacks)
         {
             try
             {
-                CloriesDown = 0;
+               /* DecreaseProteins = 0;
+                DecreaseFats = 0;
+                DecreaseCarbs = 0;*/
                 using (var db = new FoodContext())
                 {
                     foreach (var breakfastItem in breakfast)
@@ -241,12 +245,17 @@ namespace DAL
                         }
                     }
                     var queryBreakfast = ((from b in db.Meals
-                                  select new FoodItem() { AmountGm=b.FoodAmount, Calories100G=b.Calories100Gm, Key=b.FoodKey, Name=b.FoodName }).ToList());
+                                           where b.MealTime == MEALTIME.BREAKFAST && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day&&
+                                           b.CurrentDate.Month == currentDate.Month&& b.CurrentDate.Year == currentDate.Year
+                                           select new FoodItem() { AmountGm=b.FoodAmount, Calories100G=b.Calories100Gm, Key=b.FoodKey, Name=b.FoodName }).ToList());
                     foreach (var item in queryBreakfast)
                     {
                       if (breakfast.Find(c=>c.Name.Equals(item.Name)&&c.Key.Equals(item.Key)&&c.Calories100G==item.Calories100G&&c.AmountGm==item.AmountGm)==null)
                         {
                             Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BREAKFAST, FoodKey = item.Key, FoodName = item.Name, FoodAmount =item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats-= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
                             db.Meals.Attach(m);
                             db.Meals.Remove(m);
                             db.SaveChanges();
@@ -268,12 +277,17 @@ namespace DAL
                         }
                     }
                     var queryBrunch = ((from b in db.Meals
-                                           select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
+                                        where b.MealTime == MEALTIME.BRUNCH && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
+                                        select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
                     foreach (var item in queryBrunch)
                     {
-                        if (breakfast.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        if (brunch.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
                         {
                             Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.BRUNCH, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
                             db.Meals.Attach(m);
                             db.Meals.Remove(m);
                             db.SaveChanges();
@@ -295,12 +309,17 @@ namespace DAL
                         }
                     }
                     var queryDinner= ((from b in db.Meals
-                                        select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
+                                       where b.MealTime == MEALTIME.DINNER && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
+                                       select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
                     foreach (var item in queryDinner)
                     {
-                        if (breakfast.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        if (dinner.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
                         {
                             Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.DINNER, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
                             db.Meals.Attach(m);
                             db.Meals.Remove(m);
                             db.SaveChanges();
@@ -322,12 +341,17 @@ namespace DAL
                         }
                     }
                     var querySnacks = ((from b in db.Meals
+                                        where b.MealTime == MEALTIME.SNACKS && b.EmailAddress.Equals(emailAddress) && b.CurrentDate.Day == currentDate.Day &&
+                                           b.CurrentDate.Month == currentDate.Month && b.CurrentDate.Year == currentDate.Year
                                         select new FoodItem() { AmountGm = b.FoodAmount, Calories100G = b.Calories100Gm, Key = b.FoodKey, Name = b.FoodName }).ToList());
                     foreach (var item in querySnacks)
                     {
-                        if (breakfast.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
+                        if (snacks.Find(c => c.Name.Equals(item.Name) && c.Key.Equals(item.Key) && c.Calories100G == item.Calories100G && c.AmountGm == item.AmountGm) == null)
                         {
                             Meal m = new Meal() { CurrentDate = currentDate, EmailAddress = emailAddress, MealTime = MEALTIME.SNACKS, FoodKey = item.Key, FoodName = item.Name, FoodAmount = item.AmountGm, Calories100Gm = item.Calories100G };
+                            DecreaseProteins -= getFoodDetails(item.Key).Protien;
+                            DecreaseFats -= getFoodDetails(item.Key).Fats;
+                            DecreaseCarbs -= getFoodDetails(item.Key).Carbohydrate;
                             db.Meals.Attach(m);
                             db.Meals.Remove(m);
                             db.SaveChanges();

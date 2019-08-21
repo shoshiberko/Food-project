@@ -43,8 +43,8 @@ namespace project.ViewModel
             List<FoodItem> snacksLst = addDailyFoodModel.getMealsList(EmailAddressProperty, selectedDate, MEALTIME.SNACKS);
             if (df != null)
             {
-                MoodProperty = df.DailyMood;
-                ActivityProperty = df.DailyActivity;
+                MoodProperty =(int) df.DailyMood;
+                ActivityProperty = (int)df.DailyActivity;
                 TotalCaloriesProperty = df.TotalCalories.ToString();
                 TotalCarbsProperty = df.TotalCarbs.ToString();
                 TotalFatsProperty = df.TotalFats.ToString();
@@ -52,8 +52,8 @@ namespace project.ViewModel
             }
             else
             {
-                //  MoodProperty = ;
-                //ActivityProperty = ;
+                  MoodProperty =-1 ;
+                ActivityProperty =-1 ;
                 TotalCaloriesProperty = "0";
                 TotalCarbsProperty = "0";
                 TotalFatsProperty = "0";
@@ -74,7 +74,7 @@ namespace project.ViewModel
             }
             foreach (var item in BrunchListProperty)
             {
-                BrunchCaloriesProperty = (float.Parse(BrunchCaloriesProperty) + +item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
+                BrunchCaloriesProperty = (float.Parse(BrunchCaloriesProperty) +item.Calories100Gm * float.Parse(item.FoodAmountProperty)).ToString();
             }
             foreach (var item in DinnerListProperty)
             {
@@ -94,7 +94,7 @@ namespace project.ViewModel
             AddFoodItemViewModel foodItemVm;
             foreach (var item in lst)
             {
-                foodItemVm = new AddFoodItemViewModel() { FoodNameProperty = item.Name, FoodKey = item.Key, FoodAmountProperty = item.AmountGm.ToString(), Calories100Gm = item.Calories100G };
+                foodItemVm = new AddFoodItemViewModel() { FoodNameProperty = item.Name, FoodKey = item.Key, FoodAmountProperty = item.AmountGm.ToString(), Calories100Gm = item.Calories100G, CaloriesProperty= (item.Calories100G* item.AmountGm).ToString(), GMProperty=(100* item.AmountGm).ToString()+"g" };
                 switch (mt)
                 {
                     case MEALTIME.BREAKFAST: foodItemVm.PropertyChanged += PropertyChangedFoodItemBreakfast;
@@ -114,19 +114,18 @@ namespace project.ViewModel
             }
             return result;
         }
-
-
-        public static readonly DependencyProperty Mood = DependencyProperty.Register("MoodProperty", typeof(MOOD), typeof(AddDailyFoodViewModel));
-        public MOOD MoodProperty
+        
+        public static readonly DependencyProperty Mood = DependencyProperty.Register("MoodProperty", typeof(int), typeof(AddDailyFoodViewModel));
+        public int MoodProperty
         {
-            get { return (MOOD)GetValue(Mood); }
+            get { return (int)GetValue(Mood); }
             set { SetValue(Mood, value); }
         }
 
-        public static readonly DependencyProperty Activity = DependencyProperty.Register("ActivityProperty", typeof(ACTIVITY), typeof(AddDailyFoodViewModel));
-        public ACTIVITY ActivityProperty
+        public static readonly DependencyProperty Activity = DependencyProperty.Register("ActivityProperty", typeof(int), typeof(AddDailyFoodViewModel));
+        public int ActivityProperty
         {
-            get { return (ACTIVITY)GetValue(Activity); }
+            get { return (int)GetValue(Activity); }
             set { SetValue(Activity, value); }
         }
 
@@ -397,8 +396,9 @@ namespace project.ViewModel
                     Calories100G = item.Calories100Gm
                 });
             }
-            addDailyFoodModel.saveDailyFood(new DailyFood { CurrentDate = DateProperty, DailyActivity = ActivityProperty, DailyMood = MoodProperty, EmailAddress = EmailAddressProperty, TotalCalories = float.Parse(TotalCaloriesProperty), TotalCarbs = float.Parse(TotalCarbsProperty), TotalFats = float.Parse(TotalFatsProperty), TotalPortiens = float.Parse(TotalProteinsProperty) });
+            addDailyFoodModel.saveDailyFood(new DailyFood { CurrentDate = DateProperty, DailyActivity = (ACTIVITY)ActivityProperty, DailyMood = (MOOD)MoodProperty, EmailAddress = EmailAddressProperty, TotalCalories = float.Parse(TotalCaloriesProperty), TotalCarbs = float.Parse(TotalCarbsProperty), TotalFats = float.Parse(TotalFatsProperty), TotalPortiens = float.Parse(TotalProteinsProperty) });
             addDailyFoodModel.saveMeals(DateProperty, EmailAddressProperty, breakfast, brunch, dinner, snacks);
+            
         }
 
 

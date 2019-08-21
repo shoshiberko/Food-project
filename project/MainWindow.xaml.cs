@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BE;
 using BL;
+using project.View;
+using project.ViewModel;
 
 namespace project
 {
@@ -22,22 +25,37 @@ namespace project
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+        MainWindowViewModel mainWindowViewModel;
+        ListView listView = new ListView();
         public MainWindow()
         {
             InitializeComponent();
-            ImpBL bl = new ImpBL();
-            //bl.getUser("sbb@gmail.com");
-           /* using (var db = new FoodContext())
-            {
+            mainWindowViewModel = new MainWindowViewModel();
+            this.DataContext = mainWindowViewModel;
+            /*ObservableCollection<String> list1 = new ObservableCollection<string>();
+            list1.Add("Home");
+            list1.Add("Profile");
+            list1.Add("Inbox");
+            list1.Add("Outbox");
+            list1.Add("Sent");
+            list1.Add("Draft");
+            listView.ItemsSource = list1;
+            list = listView;*/
+            /*  using (var db = new FoodContext())
+              {
 
-                db.Users.Add(new User() { EmailAddress = "shosh@gmail.com", Password ="12344321", BirthDate=DateTime.Now, LastUpdateCurrentWeight=DateTime.Now});
-                db.SaveChanges();
-                 
-        }*/
+                  db.Users.Add(new User() { EmailAddress = "shosh@gmail.com", Password ="12344321", BirthDate=DateTime.Now, LastUpdateCurrentWeight=DateTime.Now});
+                  db.SaveChanges();
 
-
+          }*/
+          //  contentControl.Content = new AddDailyFoodUserControl();
         }
 
+        
+      
+       /* void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            navigationDrawer.ToggleDrawer();
+        }*/
     }
 }

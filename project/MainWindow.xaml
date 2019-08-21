@@ -4,10 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project"
-        xmlns:View="clr-namespace:project.View" x:Class="project.MainWindow"
+        xmlns:View="clr-namespace:project.View" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="project.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800">
-    <View:LogInUserControl/>
-
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="743*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="700*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                <Button Content="Home" Background="Transparent" BorderThickness="0" Command="{Binding HomeCommand}" CommandParameter="{Binding}"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                <Button Content="Search Food Details" Background="Transparent"  BorderThickness="0" Command="{Binding SearchCommand}" CommandParameter="{Binding}"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+            <Button Content="Daily Food" Background="Transparent" BorderThickness="0" Command="{Binding DailyFoodCommand}" CommandParameter="{Binding}"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+            <Button Content="Week Goals" Background="Transparent" BorderThickness="0" Command="{Binding WeekGoalsCommand}" CommandParameter="{Binding}"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+            <Button Content="Week Details" Background="Transparent" BorderThickness="0" Command="{Binding WeekDetailsCommand}" CommandParameter="{Binding}"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+            <Button Content="Log Out" Background="Transparent" BorderThickness="0"></Button>
+            <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+        </StackPanel>
+        </Grid>
+        <!-- <Menu Background="#FFA9D1F4" Grid.Row="0">
+            <MenuItem Header="Menu">
+                <MenuItem Header="Home"/>
+                <MenuItem Header="Search Food Details"/>
+                <MenuItem Header="Daily Food"/>
+                <MenuItem Header="Week Goals"/>
+                <MenuItem Header="Week Details"/>
+                <MenuItem Header="Log Out"/>
+                <Separator />
+            </MenuItem>
+        </Menu>-->
+        <UserControl x:Name="contentControl" Content="{Binding UserControlProperty}" Grid.Row="1" />
+    </Grid>
 </Window>
