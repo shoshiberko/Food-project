@@ -33,6 +33,7 @@ namespace project.ViewModel
             set { SetValue(EmailAddress, value); }
         }
 
+        //true-button set goals is enabled
         public static readonly DependencyProperty IsEnabled = DependencyProperty.Register("IsEnabledProperty", typeof(Boolean), typeof(WeekGoalsUserControlVM),new PropertyMetadata(false));
         public Boolean IsEnabledProperty
         {

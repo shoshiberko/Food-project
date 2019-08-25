@@ -41,7 +41,7 @@ namespace project.ViewModel
                     UserControlProperty = new WeekGoalsUserControl();
                     break;
                 case "WeekDetails":
-                    UserControlProperty = new UserControl9();
+                    UserControlProperty = new UserControlChart();
                     break;
                 case "DailyFood":
                     UserControlProperty = new AddDailyFoodUserControl();

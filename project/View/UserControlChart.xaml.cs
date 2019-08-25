@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using project.ViewModel;
 
 namespace project.View
 {
     /// <summary>
     /// Interaction logic for UserControl9.xaml
     /// </summary>
-    public partial class UserControl9 : UserControl
+    public partial class UserControlChart : UserControl
     {
-        public UserControl9()
+        public UserControlChartVM VM { get; set; }
+        
+        public UserControlChart()
         {
             InitializeComponent();
+            VM = new UserControlChartVM();
+            myGrid.DataContext = VM;
         }
+
     }
 }

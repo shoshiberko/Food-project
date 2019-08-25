@@ -47,6 +47,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,6 +93,7 @@
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\RegisterModel.cs" />
     <Compile Include="Model\SearchUserControlModel.cs" />
+    <Compile Include="Model\UserControlChartModel.cs" />
     <Compile Include="Model\WeekGoalsUserControlModel.cs" />
     <Compile Include="ViewModel\AddDailyFoodViewModel.cs" />
     <Compile Include="ViewModel\AddFoodItemViewModel.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="ViewModel\FloatValidationRules.cs" />
     <Compile Include="ViewModel\IntValidationRules.cs" />
     <Compile Include="ViewModel\SearchUserControlViewModel.cs" />
+    <Compile Include="ViewModel\UserControlChartVM.cs" />
     <Compile Include="ViewModel\WeekGoalsUserControlVM.cs" />
     <Compile Include="View\FoodSearchItemUserControl.xaml.cs">
       <DependentUpon>FoodSearchItemUserControl.xaml</DependentUpon>
@@ -138,8 +143,8 @@
     <Compile Include="View\WeekGoalsUserControl.xaml.cs">
       <DependentUpon>WeekGoalsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControl9.xaml.cs">
-      <DependentUpon>UserControl9.xaml</DependentUpon>
+    <Compile Include="View\UserControlChart.xaml.cs">
+      <DependentUpon>UserControlChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WeekPicker.xaml.cs">
       <DependentUpon>WeekPicker.xaml</DependentUpon>
@@ -204,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserControl9.xaml">
+    <Page Include="View\UserControlChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

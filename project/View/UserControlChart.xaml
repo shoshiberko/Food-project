@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="project.View.UserControl9"
+﻿<UserControl x:Class="project.View.UserControlChart"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
+             xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="600">
-    <Grid>
+    <Grid x:Name="myGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="10*"/>
@@ -21,7 +23,7 @@
                 <ColumnDefinition Width="134*"/>
                 <ColumnDefinition Width="431*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="1" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\logo.png"/>
+            <Image Grid.Column="1" Source="/images/logo.png"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -58,14 +60,14 @@
                         <Label x:Name="labelCaloriesTotal" Content="0" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="1"/>
                         <Label x:Name="labelFats" Content="Fats:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="3"/>
                         <Label x:Name="labelFatsTotal" Content="0" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="3"/>
-                        <Label x:Name="labelProtiens" Content="Protiens:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="5"/>
+                        <Label x:Name="labelProtiens" Content="Proteins:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="5"/>
                         <Label x:Name="labelProtiensTotal" Content="0" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="5"/>
                         <Label x:Name="labelCarbs" Content="Carbohydrates:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="7"/>
                         <Label x:Name="labelCarbsTotal" Content="0" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="7"/>
-                        <Image Grid.Row="1" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\food.png"/>
-                        <Image Grid.Row="3" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sunflower-oil.png"/>
-                        <Image Grid.Row="5" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\fried-egg.png"/>
-                        <Image Grid.Row="7" Source="C:\Users\shosh\Desktop\foodProject\project\project\images\sandwich.png"/>
+                        <Image Grid.Row="1" Source="/images/food.png"/>
+                        <Image Grid.Row="3" Source="/images/sunflower-oil.png"/>
+                        <Image Grid.Row="5" Source="/images/fried-egg.png"/>
+                        <Image Grid.Row="7" Source="/images/sandwich.png"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -109,7 +111,7 @@
                             <RowDefinition Height="35*"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <local:WeekPicker/>
+                        <local:WeekPicker SundayProperty="{Binding SundayProperty, Mode=OneWayToSource}"/>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
@@ -140,6 +142,39 @@
         <Border Grid.Row="4" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="5" Margin="10,0,10,0">
 
             <Grid>
+                <DVC:Chart Name="MyChart" >
+                    <DVC:Chart.LegendStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Width" Value="0" />
+                            <Setter Property="Height" Value="0" />
+                        </Style>
+                    </DVC:Chart.LegendStyle>
+                    <DVC:LineSeries
+                                                Title="Calories"  
+                                                DependentValuePath="Value" 
+                                                IndependentValuePath="Key"
+                                                ItemsSource="{Binding ChartListCaloriesProperty}"
+                                                IsSelectionEnabled="True"/>
+                    <DVC:LineSeries 
+                                                Title="Fats" 
+                                                DependentValuePath="Value" 
+                                                IndependentValuePath="Key"
+                                                ItemsSource="{Binding ChartListFatsProperty}"
+                                                IsSelectionEnabled="True" />
+                    <DVC:LineSeries 
+                                                Title="Proteins"  
+                                                DependentValuePath="Value" 
+                                                IndependentValuePath="Key"
+                                                ItemsSource="{Binding ChartListProteinsProperty}"
+                                                IsSelectionEnabled="True" />
+                    <DVC:LineSeries 
+                                                Title="Carbohydrates"  
+                                                DependentValuePath="Value" 
+                                                IndependentValuePath="Key"
+                                                ItemsSource="{Binding ChartListCarbProperty}"
+                                                IsSelectionEnabled="True"  />
+                        
+                </DVC:Chart>
             </Grid>
         </Border>
     </Grid>
