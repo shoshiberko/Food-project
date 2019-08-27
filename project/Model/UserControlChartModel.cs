@@ -25,5 +25,10 @@ namespace project.Model
             }
             return lst;
         }
+
+        public WeekGoals getWeekGoals(string emailAddress, DateTime sunday)
+        {
+            return myBL.getWeekGoals(emailAddress, sunday);
+        }
     }
 }

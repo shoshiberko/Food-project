@@ -21,7 +21,7 @@ namespace project.View
     public partial class WeekPicker : UserControl
     {
         private bool flagOnUpdate;
-        public static readonly DependencyProperty sunday = DependencyProperty.Register("SundayProperty", typeof(DateTime), typeof(WeekPicker),new PropertyMetadata( DateTime.Today));
+        public static readonly DependencyProperty sunday = DependencyProperty.Register("SundayProperty", typeof(DateTime), typeof(WeekPicker),new PropertyMetadata( DateTime.Today.AddDays(0-(int)DateTime.Today.DayOfWeek)));//default is sunday of this week
         public DateTime SundayProperty
         {
             get { return (DateTime)GetValue(sunday); }
