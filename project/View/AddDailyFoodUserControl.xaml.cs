@@ -22,10 +22,10 @@ namespace project.View
     public partial class AddDailyFoodUserControl : UserControl
     {
         AddDailyFoodViewModel addDailyFoodViewModel;
-        public AddDailyFoodUserControl()
+        public AddDailyFoodUserControl(String emailAddress)
         {
             InitializeComponent();
-            addDailyFoodViewModel = new AddDailyFoodViewModel();
+            addDailyFoodViewModel = new AddDailyFoodViewModel(emailAddress);
             this.DataContext = addDailyFoodViewModel;
         }
         

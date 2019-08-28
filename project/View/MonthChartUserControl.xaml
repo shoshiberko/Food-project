@@ -1,13 +1,12 @@
-﻿<UserControl x:Class="project.View.UserControlChart"
+﻿<UserControl x:Class="project.View.MonthChartUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
+             mc:Ignorable="d" 
              xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-           
-             mc:Ignorable="d"
              d:DesignHeight="700" d:DesignWidth="900">
     <Grid x:Name="myGrid">
         <Grid.RowDefinitions>
@@ -61,21 +60,21 @@
                             <ColumnDefinition Width="40*"/>
                         </Grid.ColumnDefinitions>
                         <Label x:Name="labelCalories" Content="Calories:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="1"/>
-                        <Label x:Name="labelCaloriesTotal" Content="{Binding GoalsWeekComponentsListProperty[0]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="1"/>
+                        <Label x:Name="labelCaloriesTotal" Content="{Binding GoalsMonthComponentsListProperty[0]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="1"/>
                         <Label x:Name="labelFats" Content="Fats:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="3"/>
-                        <Label x:Name="labelFatsTotal" Content="{Binding GoalsWeekComponentsListProperty[1]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="3"/>
+                        <Label x:Name="labelFatsTotal" Content="{Binding GoalsMonthComponentsListProperty[1]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="3"/>
                         <Label x:Name="labelProtiens" Content="Proteins:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="5"/>
-                        <Label x:Name="labelProtiensTotal" Content="{Binding GoalsWeekComponentsListProperty[2]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="5"/>
+                        <Label x:Name="labelProtiensTotal" Content="{Binding GoalsMonthComponentsListProperty[2]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="5"/>
                         <Label x:Name="labelCarbs" Content="Carbohydrates:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="7"/>
-                        <Label x:Name="labelCarbsTotal" Content="{Binding GoalsWeekComponentsListProperty[3]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="7"/>
+                        <Label x:Name="labelCarbsTotal" Content="{Binding GoalsMonthComponentsListProperty[3]}" FontSize="16" Margin="6" Grid.Column="2" Grid.Row="7"/>
                         <Image Grid.Row="1" Source="/images/food.png"/>
                         <Image Grid.Row="3" Source="/images/sunflower-oil.png"/>
                         <Image Grid.Row="5" Source="/images/fried-egg.png"/>
                         <Image Grid.Row="7" Source="/images/sandwich.png"/>
-                        <Label  Content="{Binding TotalWeekComponentsListProperty[0]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="1"/>
-                        <Label Content="{Binding TotalWeekComponentsListProperty[1]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="3"/>
-                        <Label Content="{Binding TotalWeekComponentsListProperty[2]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="5"/>
-                        <Label Content="{Binding TotalWeekComponentsListProperty[3]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="7"/>
+                        <Label  Content="{Binding TotalMonthComponentsListProperty[0]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="1"/>
+                        <Label Content="{Binding TotalMonthComponentsListProperty[1]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="3"/>
+                        <Label Content="{Binding TotalMonthComponentsListProperty[2]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="5"/>
+                        <Label Content="{Binding TotalMonthComponentsListProperty[3]}" FontSize="16" Margin="6" Grid.Column="5" Grid.Row="7"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -89,7 +88,7 @@
                             <RowDefinition Height="30*"/>
                             <RowDefinition Height="3*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="2" Grid.Row="1" Content=" Week Goals:" FontSize="16" FontWeight="Bold"/>
+                        <Label Grid.Column="2" Grid.Row="1" Content=" Month Goals:" FontSize="16" FontWeight="Bold"/>
                         <Label Grid.Column="3" Grid.Row="1" Content=" Actually:" FontSize="16" FontWeight="Bold"/>
                     </Grid>
                 </Grid>
@@ -113,7 +112,7 @@
                             <RowDefinition Height="30*"/>
                             <RowDefinition Height="3*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="1" Grid.Row="1" Content=" Choose Week:" FontSize="16" FontWeight="Bold"/>
+                        <Label Grid.Column="1" Grid.Row="1" Content=" Choose a Month:" FontSize="16" FontWeight="Bold"/>
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
@@ -121,7 +120,7 @@
                             <RowDefinition Height="35*"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <local:WeekPicker  SundayProperty="{Binding SundayProperty, Mode=OneWayToSource}"/>
+                        <local:WeekPicker numOfDaysPickerProperty="28"  SundayProperty="{Binding SundayProperty, Mode=OneWayToSource}"/>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
@@ -223,9 +222,9 @@
                                 <Setter Property="Height" Value="0" />
                             </Style>
                         </DVC:Chart.LegendStyle>
-                        <DVC:ColumnSeries DependentValuePath="Value"  IndependentValuePath="Key" ItemsSource="{Binding GoalsWeekColumnsProperty}" 
+                        <DVC:ColumnSeries DependentValuePath="Value"  IndependentValuePath="Key" ItemsSource="{Binding GoalsMonthColumnsProperty}" 
             IsSelectionEnabled="True"></DVC:ColumnSeries>
-                        <DVC:ColumnSeries DependentValuePath="Value"  IndependentValuePath="Key" ItemsSource="{Binding TotalWeekColumnsProperty}" 
+                        <DVC:ColumnSeries DependentValuePath="Value"  IndependentValuePath="Key" ItemsSource="{Binding TotalMonthColumnsProperty}" 
             IsSelectionEnabled="True"></DVC:ColumnSeries>
                     </DVC:Chart>
                 </Grid>

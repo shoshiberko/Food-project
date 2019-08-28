@@ -8,9 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="600">
     <Grid>
-        <Grid.DataContext>
-            <VM:WeekGoalsUserControlVM/>
-        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="70*"/>
             <RowDefinition Height="230*"/>

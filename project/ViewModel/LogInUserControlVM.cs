@@ -10,12 +10,22 @@ using System.Windows.Input;
 using project.Commands;
 using System.Threading;
 using System.Windows.Threading;
+using System.ComponentModel;
 
 namespace project.ViewModel
 {
-    public class LogInUserControlVM: DependencyObject
+    public class LogInUserControlVM: DependencyObject, INotifyPropertyChanged
     {
         public LogInModel MyModel { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
         public bool canLogIn()
         {
@@ -29,11 +39,12 @@ namespace project.ViewModel
 
 
         //true if user was loged in successfully
-        public static readonly DependencyProperty IsConnected = DependencyProperty.Register("IsConnectedProperty", typeof(Boolean), typeof(LogInUserControlVM), new PropertyMetadata(false));
+        //public static readonly DependencyProperty IsConnected = DependencyProperty.Register("IsConnectedProperty", typeof(Boolean), typeof(LogInUserControlVM), new PropertyMetadata(false));
+        Boolean isConnected;
         public Boolean IsConnectedProperty
         {
-            get { return (Boolean)GetValue(IsConnected); }
-            set { SetValue(IsConnected, value); }
+            get { return isConnected; }
+            set { isConnected = value; if(value==true) NotifyPropertyChanged("connected"); }
         }
 
         //true if the user was registerd successfully or he clicked on x button of register popup.
@@ -116,6 +127,7 @@ namespace project.ViewModel
                 time.Interval = TimeSpan.FromSeconds(interval);
                 ToolTipIsOpenLogInProperty = false;
                 time.Stop();
+                //IsConnectedProperty = true;
             };
            
         }

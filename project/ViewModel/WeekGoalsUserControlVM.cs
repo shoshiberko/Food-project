@@ -66,8 +66,9 @@ namespace project.ViewModel
             set { SetValue(Carbs, value); }
         }
 
-        public WeekGoalsUserControlVM()
+        public WeekGoalsUserControlVM(String emailAddress)
         {
+            EmailAddressProperty = emailAddress;
             SetGoalsCommand = new SetGoalsCommand();
             Model = new WeekGoalsUserControlModel();
         }

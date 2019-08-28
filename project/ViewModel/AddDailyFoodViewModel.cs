@@ -402,8 +402,9 @@ namespace project.ViewModel
         }
 
 
-        public AddDailyFoodViewModel()
+        public AddDailyFoodViewModel(String emailAddress)
         {
+            EmailAddressProperty = emailAddress;
             addDailyFoodModel = new AddDailyFoodModel();
             SaveCommand = new SaveDateMealsCommand();
             BreakfastCaloriesProperty = "0";

@@ -28,6 +28,13 @@ namespace project.View
             set { SetValue(sunday, value); }
         }
 
+        public static readonly DependencyProperty numOfDaysPicker = DependencyProperty.Register("numOfDaysPickerProperty", typeof(String), typeof(WeekPicker), new PropertyMetadata("7"));//default is sunday of this week
+        public String numOfDaysPickerProperty
+        {
+            get { return (String)GetValue(numOfDaysPicker); }
+            set { SetValue(numOfDaysPicker, value); }
+        }
+
         public WeekPicker()
         {
             InitializeComponent();
@@ -41,7 +48,7 @@ namespace project.View
             DateTime date = (DateTime)calendar.SelectedDate;
             calendar.SelectedDates.Clear();
             SundayProperty = date.AddDays(0 - (int)date.DayOfWeek);//the sunday of the selected week
-            for (int i = (int)SundayProperty.DayOfWeek; i < 7; i++)
+            for (int i = (int)SundayProperty.DayOfWeek; i < int.Parse(numOfDaysPickerProperty); i++)
                 calendar.SelectedDates.Add(SundayProperty.AddDays(i));
            
             flagOnUpdate = false;

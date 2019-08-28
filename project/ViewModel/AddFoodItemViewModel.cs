@@ -72,13 +72,6 @@ namespace project.ViewModel
                 FoodAmountProperty = "1";
             } }
 
-      /*  public static readonly DependencyProperty Amount = DependencyProperty.Register("AmountProperty", typeof(String), typeof(AddFoodItemViewModel));
-        public String AmountProperty
-        {
-            get { return (String)GetValue(Amount); }
-            set { SetValue(Amount, value); FoodAmountProperty = value; }
-        }*/
-
 
 
         private String foodAmount;
@@ -91,14 +84,6 @@ namespace project.ViewModel
                 {
                     if (value.Equals("0"))//if the item would be deleted
                         NotifyPropertyChanged("deleteItem");
-                    /*else if(value.Equals("1"))
-                    {
-                        this.foodAmount = value;
-                        // AmountProperty = value;
-                        CaloriesProperty = (Calories100Gm * float.Parse(value)).ToString();
-                        GMProperty = (int.Parse(value) * 100).ToString() + "g";
-                        NotifyPropertyChanged("FoodAmountPropertyUp");
-                    }?*/
                     else//the amount increased or decreased
                     {
                         String s = "";
