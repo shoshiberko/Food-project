@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C788EFB7-9237-412A-A29E-F7675B1B2380}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>project</RootNamespace>
+    <AssemblyName>project</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.0.325, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.2.0\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PulseButton, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PulseButton.1.0.3\lib\net45\PulseButton.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="Syncfusion.SfChart.WPF, Version=17.2460.0.34, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfNavigationDrawer.WPF, Version=17.2460.0.34, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands\AddUserCommand.cs" />
+    <Compile Include="Commands\ChangePickerCommand.cs" />
+    <Compile Include="Commands\ClosePopUpCommand.cs" />
+    <Compile Include="Commands\CloseWeightUpdateCommand.cs" />
+    <Compile Include="Commands\DailyFoodCommand.cs" />
+    <Compile Include="Commands\DeleteFoodItemCommand.cs" />
+    <Compile Include="Commands\DownCommand.cs" />
+    <Compile Include="Commands\GetFoodDetailsCommand.cs" />
+    <Compile Include="Commands\LogInCommand.cs" />
+    <Compile Include="Commands\LogOutCommand.cs" />
+    <Compile Include="Commands\RegisterCommand.cs" />
+    <Compile Include="Commands\RegisteredXCommand.cs" />
+    <Compile Include="Commands\HomeCommand.cs" />
+    <Compile Include="Commands\SaveDateMealsCommand.cs" />
+    <Compile Include="Commands\SaveNewWeightCommand.cs" />
+    <Compile Include="Commands\SearchFoodCommand.cs" />
+    <Compile Include="Commands\SearchListItemCommand.cs" />
+    <Compile Include="Commands\SetGoalsCommand.cs" />
+    <Compile Include="Commands\UpCommand.cs" />
+    <Compile Include="Commands\WeekDetailsCommand.cs" />
+    <Compile Include="Commands\WeekGoalsCommand.cs" />
+    <Compile Include="Model\AddDailyFoodModel.cs" />
+    <Compile Include="Model\AddFoodItemModel.cs" />
+    <Compile Include="Model\ChangeWeightModel.cs" />
+    <Compile Include="Model\FoodSearchItemModel.cs" />
+    <Compile Include="Model\HomeUserControlModel.cs" />
+    <Compile Include="Model\ImpBl.cs" />
+    <Compile Include="Model\LogInModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
+    <Compile Include="Model\MonthChartUserControlModel.cs" />
+    <Compile Include="Model\RegisterModel.cs" />
+    <Compile Include="Model\SearchUserControlModel.cs" />
+    <Compile Include="Model\UserControlChartModel.cs" />
+    <Compile Include="Model\WeekGoalsUserControlModel.cs" />
+    <Compile Include="ViewModel\AddDailyFoodViewModel.cs" />
+    <Compile Include="ViewModel\AddFoodItemViewModel.cs" />
+    <Compile Include="ViewModel\ChangeWeightViewModel.cs" />
+    <Compile Include="ViewModel\FoodDetailsViewModel.cs" />
+    <Compile Include="ViewModel\FoodSearchItemViewModel.cs" />
+    <Compile Include="ViewModel\HomeUserControlViewModel.cs" />
+    <Compile Include="ViewModel\LogInUserControlVM.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MonthChartUserControlVM.cs" />
+    <Compile Include="ViewModel\NumericUpDownUserControlViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\EmailValidationRules.cs" />
+    <Compile Include="ViewModel\FloatValidationRules.cs" />
+    <Compile Include="ViewModel\IntValidationRules.cs" />
+    <Compile Include="ViewModel\SearchUserControlViewModel.cs" />
+    <Compile Include="ViewModel\UserControlChartVM.cs" />
+    <Compile Include="ViewModel\WeekGoalsUserControlVM.cs" />
+    <Compile Include="View\HomeUserControl.xaml.cs">
+      <DependentUpon>HomeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangeWeightUserControl.xaml.cs">
+      <DependentUpon>ChangeWeightUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoodSearchItemUserControl.xaml.cs">
+      <DependentUpon>FoodSearchItemUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MonthChartUserControl.xaml.cs">
+      <DependentUpon>MonthChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MySliderUserControl.xaml.cs">
+      <DependentUpon>MySliderUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NumericUpDownUserControl.xaml.cs">
+      <DependentUpon>NumericUpDownUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PasswordHelper.cs" />
+    <Compile Include="View\SearchFoodComboBox.xaml.cs">
+      <DependentUpon>SearchFoodComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoodDetailsUserControl.xaml.cs">
+      <DependentUpon>FoodDetailsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchUserControl.xaml.cs">
+      <DependentUpon>SearchUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LogInUserControl.xaml.cs">
+      <DependentUpon>LogInUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddFoodItem.xaml.cs">
+      <DependentUpon>AddFoodItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddDailyFoodUserControl.xaml.cs">
+      <DependentUpon>AddDailyFoodUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WeekGoalsUserControl.xaml.cs">
+      <DependentUpon>WeekGoalsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlChart.xaml.cs">
+      <DependentUpon>UserControlChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WeekPicker.xaml.cs">
+      <DependentUpon>WeekPicker.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\HomeUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ChangeWeightUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FoodSearchItemUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MonthChartUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MySliderUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NumericUpDownUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchFoodComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoodDetailsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogInUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddFoodItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddDailyFoodUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WeekGoalsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WeekPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="View\RegisterUserControl.xaml.cs">
+      <DependentUpon>RegisterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{c39ac525-a744-4395-b6e6-b97adddc9140}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{4a5cce1d-6ea9-49a6-9b19-be16466504a7}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\foodImageListItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logoFinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\searchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\xIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\minus1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\fried-egg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sunflower-oil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sandwich.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\angry.png" />
+    <Resource Include="images\happy.png" />
+    <Resource Include="images\sad.png" />
+    <Resource Include="images\unDefine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\weightPink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\FoodImageItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ImageFoodItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plusImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\minusImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\exitImage.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\myIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\foodLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\foodLogo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bigFoodLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\homeImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\homeContinueImage.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

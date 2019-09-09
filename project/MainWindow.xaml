@@ -1,0 +1,75 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project"
+        xmlns:View="clr-namespace:project.View" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="project.MainWindow"
+        mc:Ignorable="d" WindowState="Maximized"
+        Title="Food4U" Icon="/images/logoImage.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="725*"/>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="700*"/>
+                <ColumnDefinition Width="200*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/images/bigFoodLogo.png" Margin="0,0,60,0" Visibility="{Binding MenuVisibilityProperty}"></Image>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Visibility="{Binding MenuVisibilityProperty}" Grid.Row="1" Orientation="Horizontal">
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Home" Background="Transparent" BorderThickness="0" Command="{Binding HomeCommand}" CommandParameter="{Binding}" ></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Search Food Details"  Background="Transparent"  BorderThickness="0" Command="{Binding SearchCommand}" CommandParameter="{Binding}"></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Daily Food" Background="Transparent" BorderThickness="0" Command="{Binding DailyFoodCommand}" CommandParameter="{Binding}"></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Week Goals" Background="Transparent" BorderThickness="0" Command="{Binding WeekGoalsCommand}" CommandParameter="{Binding}"></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Week Details" Background="Transparent" BorderThickness="0" Command="{Binding WeekDetailsCommand}" CommandParameter="{Binding}"></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                    <Button Content="Log Out" Background="Transparent" BorderThickness="0" Command="{Binding LogOutCommand}" CommandParameter="{Binding}"></Button>
+                    <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <!-- <Menu Background="#FFA9D1F4" Grid.Row="0">
+            <MenuItem Header="Menu">
+                <MenuItem Header="Home"/>
+                <MenuItem Header="Search Food Details"/>
+                <MenuItem Header="Daily Food"/>
+                <MenuItem Header="Week Goals"/>
+                <MenuItem Header="Week Details"/>
+                <MenuItem Header="Log Out"/>
+                <Separator />
+            </MenuItem>
+        </Menu>-->
+        <Grid Grid.Row="1" Background="{Binding BackgroundProperty}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="63*"/>
+                <ColumnDefinition Width="238*"/>
+                <ColumnDefinition Width="79*"/>
+            </Grid.ColumnDefinitions>
+            <UserControl x:Name="contentControl" Content="{Binding UserControlProperty}" Grid.Column="1"/>
+            
+            <Label Grid.Column="0" IsEnabled="False"/>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="157*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="216*"/>
+                </Grid.RowDefinitions>
+                <Button Content="{Binding ButtonChangeContentProperty}" BorderThickness="0" Background="Transparent" Foreground="#74d14c" FontWeight="Bold" FontSize="16" Visibility="{Binding ButtonVisibilityProperty,Mode=OneWay}" Command="{Binding ChangeTypePickerCommand}" CommandParameter="{Binding}" Grid.Row="1" Margin="25,0,25,0"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

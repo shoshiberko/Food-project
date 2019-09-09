@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="project.View.NumericUpDownUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Name="MyControl"
+             xmlns:local="clr-namespace:project.View"
+             xmlns:vm="clr-namespace:project.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <StackPanel x:Name="stackPanel" Orientation="Horizontal">
+        <Button x:Name="cmdUp" Command="{Binding UpCommand}" CommandParameter="{Binding}" Margin="2" Background="Transparent" BorderThickness="0" >
+            <Image x:Name="image" Source="/images/plusImage.png"/>
+            <!--<TextBox Text="Up"></TextBox>-->
+        </Button>
+        <TextBox x:Name="txtNum" IsEnabled="False" Text="{Binding Path=TextNumValueProperty, Mode=OneWay}" Background="Transparent" BorderBrush="Transparent" TextChanged="txtNum_TextChanged"/>
+        <Button x:Name="cmdDown"  Command="{Binding DownCommand}" CommandParameter="{Binding}"  Margin="2" Background="Transparent" BorderThickness="0">
+            <Image x:Name="image2" Source="/images/minusImage.png"></Image>
+            <!--<TextBox Text="Down"></TextBox>-->
+        </Button>
+
+    </StackPanel>
+</UserControl>
