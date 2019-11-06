@@ -6,11 +6,43 @@
              xmlns:local="clr-namespace:project.View"
              xmlns:vm="clr-namespace:project.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="800">
 
     <Grid>
-        <Image Source="/images/homeImage.png"/>
-        <Popup Visibility="Visible" Placement="MousePoint" HorizontalAlignment="Center" IsOpen="{Binding IsOpenChangeWeightProperty, Mode=OneWay}" Height="300" Width="300"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="326*"/>
+            <RowDefinition Height="52*"/>
+        </Grid.RowDefinitions>
+        <!--Image Source="/images/foodBackground.jpg"/-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.75*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="WELCOME!"  FontSize="47" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="219*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.65*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.65*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"  Content="About Us" FontSize="30" />
+                <Label Grid.Column="1"  Content="____________________" FontSize="30" />
+            </Grid>
+            <Image Grid.Row="3" Source="/images/aboutUs.png"></Image>
+        </Grid>
+        <Popup Visibility="Visible" Placement="MousePoint" HorizontalAlignment="Center" IsOpen="{Binding IsOpenChangeWeightProperty, Mode=OneWay}" Height="300" Width="300" Margin="250,63,250,47.674" Grid.Row="1" Grid.RowSpan="2"  >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*"/>
@@ -23,7 +55,8 @@
                     </Grid.ColumnDefinitions>
                     <Button x:Name="button" Grid.Column="1" Background="Transparent" Content="X" FontSize="16"  BorderThickness="0" Command="{Binding CloseCommand}" CommandParameter="{Binding}"/>
                 </Grid>
-                <local:ChangeWeightUserControl BorderThickness="0" x:Name="popUpChangeWeightUserControl"  Grid.Row="1" EmailAddressProperty="{Binding EmailAddressProperty}"/>
+                <UserControl x:Name="UserControlChangeWeight" Content="{Binding UserControlProperty}" BorderThickness="0" Grid.Row="1"/>
+                <!--<local:ChangeWeightUserControl BorderThickness="0" x:Name="popUpChangeWeightUserControl"  Grid.Row="1" EmailAddressProperty="{Binding EmailAddressProperty}"/>-->
             </Grid>
         </Popup>
     </Grid>

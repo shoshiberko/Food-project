@@ -15,15 +15,15 @@
         </Grid.ColumnDefinitions>
 
 
-        <Slider x:Name="slider"  
-                
+        <Slider x:Name="slider"  Style="{StaticResource MaterialDesignDiscreteSlider}"
+            
             Minimum="0" 
             Maximum="2000"
             IsSnapToTickEnabled="True"
             TickFrequency="1"
             TickPlacement="Both"
-              Value="{Binding Path=StringValueProperty}" Grid.ColumnSpan="2" Margin="0,0,14.268,0.4" />
-        <TextBlock x:Name="textBlock1" Grid.Column="2" Text="{Binding ElementName=slider, Path=Value}" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2" Margin="0.2,0,-0.4,-0.6" />
+              Value="{Binding Path=StringValueProperty}" />
+        <TextBlock x:Name="textBlock1" Grid.Column="2" Text="{Binding ElementName=slider, Path=Value}" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
     </Grid>
 
 </UserControl>

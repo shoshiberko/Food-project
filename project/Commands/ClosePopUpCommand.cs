@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((FoodSearchItemViewModel)parameter).MyIsOpenProperty = false;
+            ((FoodSearchItemViewModel)parameter).MyIsOpenProperty = false;//this property in ViewModel make the popup closed. calls from button click
         }
     }
 }

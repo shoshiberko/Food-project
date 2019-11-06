@@ -18,7 +18,7 @@ namespace project.Commands
             return true;
         }
 
-        public void Execute(object parameter)
+        public void Execute(object parameter)//this function change the graphs from month to week and the opposite. calls from button click
         {
             if ((((MainWindowViewModel)parameter).UserControlProperty as MonthChartUserControl) != null)
             {

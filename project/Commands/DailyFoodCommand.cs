@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((MainWindowViewModel)parameter).SetUserControl("DailyFood");
+            ((MainWindowViewModel)parameter).SetUserControl("DailyFood");//this function in ViewModel make the mainWindow show the dailyFood UserControl. calls from button click
         }
     }
 }

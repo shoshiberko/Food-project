@@ -23,7 +23,7 @@ namespace project.Commands
         {
             try
             {
-                ((RegisterViewModel)parameter).addUser();
+                ((RegisterViewModel)parameter).addUser();//this function in ViewModel addUser. calls from button click
             }
             catch(Exception e)
             {

@@ -10,12 +10,12 @@ namespace project.Model
 {
     public class HomeUserControlModel
     {
-        ImpBL myBL;
-        public HomeUserControlModel()
+        ImpBL myBL;//all the functions use the bl that has the access to DAL function and from there to the db. 
+        public HomeUserControlModel()//constructor
         {
             myBL = new ImpBL();
         }
-        public User getUser(string emailAddress)
+        public User getUser(string emailAddress)//get the user that it's email address equal to emailAddress
         {
             return myBL.getUser(emailAddress);
         }

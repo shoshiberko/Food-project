@@ -21,7 +21,7 @@ namespace project.Commands
         {
             try
             {
-                ((AddDailyFoodViewModel)parameter).saveMeals();
+                ((AddDailyFoodViewModel)parameter).saveMeals();//this function in ViewModel saved all the user meals details in db. calls from button click
             }
             catch (Exception e)
             {

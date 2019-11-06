@@ -94,11 +94,11 @@
                     </Grid.RowDefinitions>
                     <Button x:Name="buttonRegister" Grid.Row="1" Background="Transparent" BorderThickness="0" FontSize="16"  Command="{Binding MyCommandRegister}"
                             CommandParameter="{Binding}">
-                        <TextBlock Text="Register" FontWeight="Bold" Foreground="#E7AC19" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" />
+                        <TextBlock Text="Register" FontWeight="Bold" Foreground="{StaticResource PrimaryHueMidBrush}" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" />
                     </Button>
                 </Grid>
 
-                <Button x:Name="buttonLogIn" Content="Log in" Grid.Column="3"   Grid.Row="1" FontSize="16" Background="#E7AC19" FontWeight="Bold" BorderBrush="#FF7D7575"
+                <Button x:Name="buttonLogIn" Content="Log in" Grid.Column="3"   Grid.Row="1" FontSize="16" Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold" BorderBrush="#FF7D7575" Cursor="Hand"
                         Command="{Binding MyCommandLogIn}" CommandParameter="{Binding}" Margin="10,2,10,0">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -109,21 +109,24 @@
                                         <Condition Binding="{Binding ElementName=emailLoginTextBox, Path=Text}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
+                                    <Setter Property="Button.Opacity" Value="0.5"/>
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding  ElementName=emailLoginTextBox, Path=(Validation.HasError)}" Value="true" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Opacity" Value="0.5"/>
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding MyPasswordProperty}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
+                                    <Setter Property="Button.Opacity" Value="0.5"/>
                                 </MultiDataTrigger>
 
                             </Style.Triggers>

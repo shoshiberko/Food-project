@@ -20,7 +20,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((HomeUserControlViewModel)parameter).IsOpenChangeWeightProperty = false;
+            ((HomeUserControlViewModel)parameter).IsOpenChangeWeightProperty = false;//this property in ViewModel make the popup closed. calls from button click
 
         }
     }

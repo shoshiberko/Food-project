@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((FoodSearchItemViewModel)parameter).openPopUp();
+            ((FoodSearchItemViewModel)parameter).openPopUp();//this function in ViewModel make the popUp open. calls from button click
         }
     }
 }

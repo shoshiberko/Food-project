@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((MainWindowViewModel)parameter).SetUserControl("LogOut");
+            ((MainWindowViewModel)parameter).SetUserControl("LogOut");//this function in ViewModel make go back to the login UserControl. calls from button click
         }
     }
 }

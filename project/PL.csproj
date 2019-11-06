@@ -105,7 +105,6 @@
     <Compile Include="Model\ChangeWeightModel.cs" />
     <Compile Include="Model\FoodSearchItemModel.cs" />
     <Compile Include="Model\HomeUserControlModel.cs" />
-    <Compile Include="Model\ImpBl.cs" />
     <Compile Include="Model\LogInModel.cs" />
     <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\MonthChartUserControlModel.cs" />
@@ -370,6 +369,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\homeContinueImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\foodBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\textAboutUs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\aboutUs.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

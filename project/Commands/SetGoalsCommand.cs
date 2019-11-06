@@ -21,7 +21,7 @@ namespace project.Commands
         {
             try
             {
-                ((WeekGoalsUserControlVM)parameter).setGoals();
+                ((WeekGoalsUserControlVM)parameter).setGoals();//this function in ViewModel saved the weekly user goals. calls from button click
             }
             catch (Exception e)
             {

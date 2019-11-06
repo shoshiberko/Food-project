@@ -21,7 +21,7 @@ namespace project.Commands
         {
             try
             {
-                ((AddFoodItemViewModel)parameter).deleteFoodItem();
+                ((AddFoodItemViewModel)parameter).deleteFoodItem();//this function in ViewModel delete food item fromthe dailyFood. calls from button click
             }
             catch (Exception e)
             {

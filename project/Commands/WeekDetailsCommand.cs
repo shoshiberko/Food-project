@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((MainWindowViewModel)parameter).SetUserControl("WeekDetails");
+            ((MainWindowViewModel)parameter).SetUserControl("WeekDetails");//this function in ViewModel make the mainWindow show the WeekDetails UserControl. calls from button click
         }
     }
 }

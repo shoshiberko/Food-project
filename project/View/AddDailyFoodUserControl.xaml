@@ -12,50 +12,56 @@
             <local:AddFoodItem >
             </local:AddFoodItem>
         </DataTemplate>
+        <Style x:Key="combo" TargetType="ComboBox">
+
+        </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid >
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.5"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.3*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="White">
-            <!-- Background="#e8e8e8"--> 
+        <Grid Grid.Row="0" >
+            <!-- Background="#e8e8e8"-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
-           <!-- <Image Grid.Column="1" Source="/images\foodLogo1.png"/>-->
-                <Label Content="Choose Day:" FontSize="18" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="15,0,0,0" />
+            <!-- <Image Grid.Column="1" Source="/images\foodLogo1.png"/>-->
+            <Label Content="Choose Day:" FontSize="18" Foreground="Black" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="15,0,0,0" />
             <Grid Grid.Column="1" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
-                <DatePicker x:Name="datePicker" Margin="5" Grid.Row="1" SelectedDate="{Binding DateProperty, Mode=TwoWay}" BorderThickness="0" FontSize="16" Foreground="Gray" Background="#e8e8e8" SelectedDateChanged="datePicker_SelectedDateChanged"/>
+                <DatePicker x:Name="datePicker"  Grid.Row="1" SelectedDate="{Binding DateProperty, Mode=TwoWay}" BorderThickness="0" FontSize="16" Foreground="Gray" Background="#e8e8e8" SelectedDateChanged="datePicker_SelectedDateChanged"/>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" Background="White">
-          <!--  Background="#e8e8e8">-->
+        <Grid Grid.Row="1" >
+            <!--  Background="#e8e8e8">-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="1"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="16*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="16*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="16*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="16*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="40*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0*"/>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
@@ -65,27 +71,27 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="9*"/>
                     <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="12*"/>
                     <ColumnDefinition Width="39*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="  Activity:" FontSize="16" FontWeight="Bold" Grid.Column="0"/>
-                <ComboBox x:Name="activityComboBox" Grid.Column="2" Margin="0,5,5,5" BorderThickness="2" SelectedIndex="{Binding ActivityProperty}" >
-                    <ComboBoxItem Content="Home"/>
-                    <ComboBoxItem Content="Work"/>
-                    <ComboBoxItem Content="Fun"/>
-                    <ComboBoxItem Content="Other"/>
+                <ComboBox x:Name="activityComboBox" Grid.Column="2" Margin="0" BorderThickness="2" SelectedIndex="{Binding ActivityProperty}" >
+                    <ComboBoxItem Content=" Home"/>
+                    <ComboBoxItem Content=" Work"/>
+                    <ComboBoxItem Content=" Fun"/>
+                    <ComboBoxItem Content=" Other"/>
                 </ComboBox>
             </Grid>
             <Grid Grid.Row="17">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60*"/>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="55*"/>
-                    <ColumnDefinition Width="393*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="39*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="  Mood:" FontSize="16" FontWeight="Bold" Grid.Column="0"/>
-                <ComboBox x:Name="moodComboBox" Grid.Column="2" BorderThickness="2" SelectedIndex="{Binding Path=MoodProperty}" Margin="0,5,5,5">
-                    <ComboBoxItem x:Name="happyComboBoxItem"> 
+                <Label Content="  Mood:" FontSize="16" FontWeight="Bold" Grid.Column="0" />
+                <ComboBox Style="{StaticResource combo}" x:Name="moodComboBox" BorderThickness="2"  SelectedIndex="{Binding Path=MoodProperty}" Margin="5,0,90,12" Grid.Column="2" >
+                    <ComboBoxItem x:Name="happyComboBoxItem">
                         <Image Source="/images/happy.png" />
                     </ComboBoxItem>
                     <ComboBoxItem x:Name="sadComboBoxItem">
@@ -121,34 +127,34 @@
                 <Label Grid.Column="5" Content="Proteins" FontSize="16" FontWeight="Bold"/>
                 <Label Grid.Column="7" Content="Carbohydrates" FontSize="16" FontWeight="Bold"/>
                 <Label Grid.Column="9" Content="Fats" FontSize="16" FontWeight="Bold"/>
-                <Button Grid.Column="10" Content="Save" FontSize="20" Margin="0,0,50,0"  Background="#74d14c" FontWeight="Bold" BorderBrush="#FF7D7575" Command="{Binding SaveCommand}" CommandParameter="{Binding}">
+                <Button Grid.Column="10" Content="Save" FontSize="20" Margin="0,0,50,0"  Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold" BorderBrush="#FF7D7575" Command="{Binding SaveCommand}" CommandParameter="{Binding}">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Foreground" Value="White"/>
                             <Style.Triggers >
-                                
+
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=moodComboBox, Path=SelectedIndex}" Value="-1" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#ccff99" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=activityComboBox, Path=SelectedIndex}" Value="-1" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#ccff99" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=datePicker, Path=Text}" Value=""/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#ccff99" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
-                                </Style.Triggers >
+                            </Style.Triggers >
                         </Style>
                     </Button.Style>
                 </Button>
@@ -178,7 +184,7 @@
                 <Label x:Name="totalProtiensLabel" Grid.Column="5" FontSize="14"  HorizontalAlignment="Center" Content="{Binding TotalProteinsProperty}"/>
                 <Label x:Name="totalCarbsLabel" Grid.Column="7"  FontSize="14"  HorizontalAlignment="Center" Content="{Binding TotalCarbsProperty}"/>
                 <Label x:Name="totalFatsLabel" Grid.Column="9" FontSize="14"  Margin="7,0,0,0" Content="{Binding TotalFatsProperty}"/>
-                
+
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -193,7 +199,7 @@
                 <Label x:Name="breakfastCaloriesLabel" Content="{Binding BreakfastCaloriesProperty}" FontWeight="Bold" FontSize="16" Grid.Column="2" />
                 <local:SearchFoodComboBox Grid.Column="4" SelectedFoodItemProperty="{Binding SelectedFoodToAddBreakfastProperty, Mode=OneWayToSource}"/>
             </Grid>
-            <ListView x:Name="breakfastListView" Grid.Row="3" Margin="6" ItemsSource="{Binding BreakfastListProperty}"/>
+            <ListView x:Name="breakfastListView" Grid.Row="3" Margin="0,6,6,6" ItemsSource="{Binding BreakfastListProperty}"/>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>

@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:project.View"
              mc:Ignorable="d" 
              d:DesignHeight="163" d:DesignWidth="180">
-    <Calendar x:Name="calendar" SelectedDatesChanged="calendar_SelectedDatesChanged" SelectionMode="MultipleRange" >
+    <UserControl.Resources>
+        <Style x:Key="m" TargetType="Calendar">
+        </Style>
+    </UserControl.Resources>
+    <Calendar x:Name="calendar" Style="{StaticResource m}"  SelectedDatesChanged="calendar_SelectedDatesChanged" SelectionMode="MultipleRange" >
     </Calendar>
 </UserControl>

@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((SearchUserControlViewModel)parameter).updateList();
+            ((SearchUserControlViewModel)parameter).updateList();//this function in ViewModel update the list of food in SearchFood UserControl according to the user input. calls from button click
         }
     }
 }

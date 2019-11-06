@@ -22,7 +22,7 @@ namespace project.View
     public partial class ChangeWeightUserControl : UserControl
     {
         ChangeWeightViewModel changeWeightViewModel;
-        public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(ChangeWeightUserControl), new PropertyMetadata("", new PropertyChangedCallback(emailAddressChanged)));
+       /* public static readonly DependencyProperty EmailAddress = DependencyProperty.Register("EmailAddressProperty", typeof(String), typeof(ChangeWeightUserControl), new PropertyMetadata("", new PropertyChangedCallback(emailAddressChanged)));
         public String EmailAddressProperty
         {
             get { return (String)GetValue(EmailAddress); }
@@ -33,12 +33,12 @@ namespace project.View
         {
             ChangeWeightUserControl p = (ChangeWeightUserControl)d;
             p.changeWeightViewModel.EmailAddressProperty = (String)(e.NewValue);
-        }
+        }*/
 
-        public ChangeWeightUserControl()
+        public ChangeWeightUserControl(String emailAddress)
         {
             InitializeComponent();
-            changeWeightViewModel = new ChangeWeightViewModel();
+            changeWeightViewModel = new ChangeWeightViewModel(emailAddress);
             myGrid.DataContext = changeWeightViewModel;
         }
     }

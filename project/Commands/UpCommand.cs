@@ -20,7 +20,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((NumericUpDownUserControlViewModel)parameter).up();
+            ((NumericUpDownUserControlViewModel)parameter).up();//this function in ViewModel make counter up. calls from button click
         }
     }
 }

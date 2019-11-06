@@ -17,14 +17,14 @@ namespace project.Commands
             if(parameter==null)
                 return true;
             else
-                return ((LogInUserControlVM)parameter).canLogIn();
+                return ((LogInUserControlVM)parameter).canLogIn();//log in only if the user can log in.
         }
 
         public void Execute(object parameter)
         {
             try
             {
-                ((LogInUserControlVM)parameter).logIn();
+                ((LogInUserControlVM)parameter).logIn();//this function in ViewModel make the user log in . calls from button click
             }
             catch (Exception e)
             {

@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
              xmlns:vm="clr-namespace:project.Model"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="100">
     <Grid  d:DataContext="{d:DesignInstance vm:FoodSearchItemViewModel}" >
@@ -21,32 +22,34 @@
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Grid.Row="1" IsEnabled="False"></Label>
         <Button x:Name="buttonShowFoodDetails" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Background="Transparent" BorderThickness="0" FontSize="14" Command="{Binding GetFoodDetailsCommandProperty}" CommandParameter="{Binding}">
-            <TextBlock x:Name="textBlockFoodName" FontWeight="Bold" Foreground="#74d14c" Text="{Binding Path=FoodNameProperty ,Mode=OneWay}" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="center"/>
+            <TextBlock x:Name="textBlockFoodName" FontWeight="Bold" Foreground="{StaticResource PrimaryHueMidBrush}" Text="{Binding Path=FoodNameProperty ,Mode=OneWay}" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="center"/>
         </Button>
         <Grid Grid.Column="0" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="24*"/>
                 <RowDefinition Height="51*"/>
                 <RowDefinition Height="25*"/>
-            </Grid.RowDefinitions> 
+            </Grid.RowDefinitions>
             <Image x:Name="image" Grid.Row="1" Source="/images/ImageFoodItem.png"/>
-        </Grid> 
+        </Grid>
         <Popup Visibility="Visible" Placement="MousePoint" HorizontalAlignment="Center" IsOpen="{Binding MyIsOpenProperty, Mode=OneWay}"  VerticalAlignment="Center" Height="300" Width="500" Opened="Popup_Opened">
 
             <Border BorderBrush="Gray" BorderThickness="1">
                 <Grid Background="White">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="469*"/>
-                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="449*"/>
+                        <ColumnDefinition Width="49*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="12*"/>
-                        <RowDefinition Height="137*"/>
+                        <RowDefinition Height="17*"/>
+                        <RowDefinition Height="132*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="Button" Grid.Row="0" Grid.Column="1" Command="{Binding ClosePopUpCommandProperty}" CommandParameter="{Binding}" Content="X" FontWeight="Bold"></Button>
+
+                    <Button x:Name="Button" Grid.Row="0" Grid.Column="1"  ToolTip="Close" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent" Command="{Binding ClosePopUpCommandProperty}"  CommandParameter="{Binding}" Height="Auto" Margin="0,1">
+                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Close" Foreground="{StaticResource PrimaryHueMidBrush}" />
+                    </Button>
                     <TextBox x:Name="TextFoodDetails" Background="Transparent" IsEnabled="False" Foreground="Transparent" Text="{Binding FoodDetailsProperty }" ></TextBox>
-                    <local:FoodDetailsUserControl x:Name="foodDetailsUserControl" FoodDependencyProperty="{Binding Path=Content, ElementName=Button}"  Margin="0,0,-0.4,-0.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                    </local:FoodDetailsUserControl>
+                    <local:FoodDetailsUserControl x:Name="foodDetailsUserControl" FoodDependencyProperty="{Binding Path=Content, ElementName=Button}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
                     <!--{Binding FoodDetailsProperty}-->
                 </Grid>
             </Border>

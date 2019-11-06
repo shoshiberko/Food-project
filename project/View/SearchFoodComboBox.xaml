@@ -5,17 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
              mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="100" d:DesignWidth="300" x:Name="parent">
-    <Grid x:Name="LayoutRoot" DataContext="{Binding ElementName=parent}">
-        <Border CornerRadius="5" Grid.Column="4" BorderBrush="Gray" BorderThickness="1">
-            <Grid >
+    <Grid   x:Name="LayoutRoot" DataContext="{Binding ElementName=parent}">
+        <Border CornerRadius="5" Grid.Column="4" BorderBrush="Gray"  Background="White" BorderThickness="1">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="200*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="/images/searchIcon.png"/>
-                <ComboBox Grid.Column="1" Background="Transparent" Margin="0,0,2,0"  ItemsSource="{Binding SearchListProperty, Mode=OneWay}" IsDropDownOpen="{Binding IsOpenProperty}" SelectedItem="{Binding SelectedFoodItemProperty,Mode=OneWayToSource }"></ComboBox>
-                <TextBox Grid.Column="1" x:Name="SearchTextBox" Margin="0,0,2,0" Foreground="Gray" FontSize="16" Text="{Binding SearchTextProperty,Mode=OneWayToSource}" Background="White" BorderThickness="0" TextChanged="SearchTextBox_TextChanged"/>
+                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueMidBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Search"  />
+                <!--Margin="10,7,0,2.6"-->
+                <ComboBox Grid.Column="1" Margin="0,0,2,0"  ItemsSource="{Binding SearchListProperty, Mode=OneWay}"  IsDropDownOpen="{Binding IsOpenProperty}" SelectedItem="{Binding SelectedFoodItemProperty,Mode=OneWayToSource }"></ComboBox>
+                <TextBox Background="white"  Grid.Column="1" x:Name="SearchTextBox" Margin="0,0,2,0" Foreground="Gray" FontSize="14" Text="{Binding SearchTextProperty,Mode=OneWayToSource}"  BorderThickness="0" TextChanged="SearchTextBox_TextChanged"/>
             </Grid>
         </Border>
     </Grid>

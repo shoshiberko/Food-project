@@ -23,7 +23,7 @@ namespace project.Commands
         {
             try
             {
-                ((LogInUserControlVM)parameter).register();
+                ((LogInUserControlVM)parameter).register();//this function in ViewModel make a new user register to db. calls from button click
             }
             catch (Exception e)
             {

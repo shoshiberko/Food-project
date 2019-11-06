@@ -20,6 +20,7 @@ namespace project.Commands
         public void Execute(object parameter)
         {
             ((ChangeWeightViewModel)parameter).SaveChange();
+            ((HomeUserControlViewModel)parameter).IsOpenChangeWeightProperty = false;
 
         }
     }

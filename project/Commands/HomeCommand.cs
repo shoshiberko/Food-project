@@ -19,7 +19,7 @@ namespace project.Commands
 
         public void Execute(object parameter)
         {
-            ((MainWindowViewModel)parameter).SetUserControl("Home");
+            ((MainWindowViewModel)parameter).SetUserControl("Home");//this function in ViewModel make the mainWindow show the Home UserControl. calls from button click
         }
     }
 }

@@ -8,9 +8,10 @@ using System.Windows.Controls;
 
 namespace project.ViewModel
 {
-    public class FloatValidationRules : ValidationRule
+    public class FloatValidationRules : ValidationRule//this class define the float validation
     {
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)//this function match the input string to the float validation rules. the connection to the float text box is from xml-when the binding done(Binding.ValidationRules)
+                                                                                        //this function make an red sign when the input is illegal.
         {
             if (((String)value) == "" || ((String)value) == null)
                 return new ValidationResult(true, "Not a valid float");

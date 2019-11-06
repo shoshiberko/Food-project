@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="3" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="5">
+            <Border Grid.Column="3" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="2" CornerRadius="5">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="7*"/>
@@ -53,10 +53,10 @@
                             <RowDefinition Height="30*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30*"/>
-                            <ColumnDefinition Width="80*"/>
-                            <ColumnDefinition Width="40*"/>
-                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="20*"/>
                             <ColumnDefinition Width="40*"/>
                         </Grid.ColumnDefinitions>
                         <Label x:Name="labelCalories" Content="Calories:" Margin="6"  FontSize="16" Grid.Column="1" Grid.Row="1"/>
@@ -94,11 +94,11 @@
                 </Grid>
             </Border>
 
-            <Border Grid.Column="0" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="2" Margin="47,0,0,0">
+            <Border Grid.Column="0" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="2" CornerRadius="5" Grid.ColumnSpan="2" Margin="47,0,0,0">
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="7*"/>
-                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="15*"/>
                         <RowDefinition Height="100*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="1">
@@ -117,10 +117,8 @@
                     <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="215*"/>
-                            <RowDefinition Height="35*"/>
-                            <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <local:WeekPicker numOfDaysPickerProperty="28"  SundayProperty="{Binding SundayProperty, Mode=OneWayToSource}"/>
+                        <local:WeekPicker numOfDaysPickerProperty="28"  SundayProperty="{Binding SundayProperty, Mode=OneWayToSource}" />
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
@@ -157,7 +155,7 @@
                 <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="5" Margin="10,0,10,0">
+            <Border Grid.Column="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="2" CornerRadius="5" Margin="10,0,10,0">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -165,10 +163,10 @@
                         <RowDefinition Height="215*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
-                        <ToggleButton x:Name="Calorieschart" Background="Transparent" Content="Calories" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
-                        <ToggleButton x:Name="FatsChart" Background="Transparent" Content="Fats" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
-                        <ToggleButton x:Name="ProteinsChart" Background="Transparent" Content="Proteins" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}" />
-                        <ToggleButton x:Name="CarbChart" Background="Transparent" Content="Carbohydrates" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
+                        <ToggleButton x:Name="Calorieschart" Background="Transparent" Foreground="DarkBlue" Style="{StaticResource myToggleButton}" Content="Calories" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
+                        <ToggleButton x:Name="FatsChart" Background="Transparent" Foreground="IndianRed" Style="{StaticResource myToggleButton}" Content="Fats" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
+                        <ToggleButton x:Name="ProteinsChart" Background="Transparent" Foreground="Green"  Style="{StaticResource myToggleButton}" Content="Proteins" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}" />
+                        <ToggleButton x:Name="CarbChart" Background="Transparent" Foreground="Gold" Style="{StaticResource myToggleButton}" Content="Carbohydrates" Margin="5" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"  IsChecked="{Binding IsCheckedAllChartsLinesProperty, Mode=OneWay}"/>
                     </StackPanel>
                     <DVC:Chart Name="MyChart" Grid.Row="1">
                         <DVC:Chart.LegendStyle>
@@ -205,7 +203,7 @@
                     </DVC:Chart>
                 </Grid>
             </Border>
-            <Border Grid.Column="3" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="5" Margin="10,0,10,0">
+            <Border Grid.Column="3" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="2" CornerRadius="5" Margin="10,0,10,0">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -213,6 +211,16 @@
                         <RowDefinition Height="215*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
+                        <Border Margin="5" BorderBrush="Gray" BorderThickness="0.5" >
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Label Content="goals" Foreground="DarkBlue" HorizontalAlignment="Center"></Label>
+                            </StackPanel>
+                        </Border>
+                        <Border Margin="5" BorderBrush="Gray" BorderThickness="0.5" >
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Label Content="actually" Foreground="IndianRed" HorizontalAlignment="Center"></Label>
+                            </StackPanel>
+                        </Border>
 
                     </StackPanel>
                     <DVC:Chart Grid.Row="1" >

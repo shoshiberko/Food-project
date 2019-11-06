@@ -33,7 +33,7 @@
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="buttonShowFoodDetails" Grid.Row="1" Background="Transparent" BorderThickness="0" FontSize="16">
-                    <TextBlock x:Name="textBlockFoodName" Text="{Binding FoodNameProperty, Mode=OneWay}" FontWeight="Bold" Foreground="#74d14c" TextDecorations="Underline" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="textBlockFoodName" Text="{Binding FoodNameProperty, Mode=OneWay}" FontWeight="Bold" Foreground="{StaticResource PrimaryHueMidBrush}" TextDecorations="Underline" TextWrapping="Wrap"/>
                 </Button>
             </Grid>
 

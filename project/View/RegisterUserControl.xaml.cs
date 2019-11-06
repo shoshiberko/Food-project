@@ -36,6 +36,7 @@ namespace project.View
             registerViewModel = new RegisterViewModel();
             registerViewModel.PropertyChanged += viewModelPropertyChanged;
             myGrid.DataContext = registerViewModel;
+            birthDatePicker.SelectedDate = DateTime.Now;
         }
 
         private void viewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

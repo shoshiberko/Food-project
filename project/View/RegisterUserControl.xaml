@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:project.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:BE="clr-namespace:BE;assembly=BE"
              xmlns:pl="clr-namespace:project.ViewModel"
              mc:Ignorable="d" 
@@ -45,14 +46,17 @@
             </Grid>
             <Grid Grid.Column="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="6*"/>
                     <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="1" Content="x" FontSize="16" Command="{Binding RegisterXCommand}" CommandParameter="{Binding}"> </Button>
+                <Button Grid.Column="1" ToolTip="Close" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent"  BorderThickness="0" Command="{Binding RegisterXCommand}" CommandParameter="{Binding}">
+                    <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Close" />
+                </Button>
+              
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
@@ -76,7 +80,7 @@
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="15*"/>
                         <RowDefinition Height="15*"/>
-                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="17*"/>
                         <RowDefinition Height="15*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -120,7 +124,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label x:Name="labelKgs1" Content="kgs"  Grid.Row="1"  Grid.Column="2" Foreground="#FF7D7575"/>
+                        <Label x:Name="labelKgs1" Content="kgs"  Grid.Column="1" Foreground="#FF7D7575" Grid.ColumnSpan="2" Margin="123.6,11,0.2,-0.2" Grid.RowSpan="3"/>
 
                     </Grid>
                     <Grid Grid.Row="3" Grid.Column="1" >
@@ -143,7 +147,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label x:Name="labelCm" Content="cm" Grid.Row="1"  Grid.Column="2" Foreground="#FF7D7575"/>
+                        <Label x:Name="labelCm" Content="cm" Grid.Row="1"  Grid.Column="1" Foreground="#FF7D7575" Grid.ColumnSpan="2" Margin="123.6,0,0.2,9.6" Grid.RowSpan="2"/>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1" >
                         <Grid.RowDefinitions>
@@ -162,7 +166,6 @@
                         </Grid.ColumnDefinitions>
 
                         <DatePicker x:Name="birthDatePicker" SelectedDate="{Binding Path=BirthDate, Mode=OneWayToSource}" Grid.Row="1" Grid.Column="1" Background="White"  DisplayDateEnd="{Binding Path=MyDisplayDateEnd ,Mode=OneWay}"/>
-
                     </Grid>
                     <Grid Grid.Row="6" Grid.Column="1" >
                         <Grid.RowDefinitions>
@@ -207,7 +210,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label x:Name="labelKgs2" Content="kgs" Grid.Row="1"  Grid.Column="2" Foreground="#FF7D7575"/>
+                        <Label x:Name="labelKgs2" Content="kgs" Grid.Row="1"  Grid.Column="1" Foreground="#FF7D7575" Grid.ColumnSpan="2" Margin="123.6,0,0.2,-0.4" Grid.RowSpan="2"/>
 
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="7">
@@ -226,7 +229,7 @@
                     <Grid Grid.Column="1" Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10*"/>
-                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="30*"/>
                             <RowDefinition Height="10*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -249,7 +252,7 @@
                     <RowDefinition Height="37*"/>
                     <RowDefinition Height="14*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="buttonNext" Content="Next" Grid.Column="1" Grid.Row="1" FontSize="20"  Background="#E7AC19" FontWeight="Bold" BorderBrush="#FF7D7575" Command="{Binding ClickCommand}" CommandParameter="{Binding}" Height="39" VerticalAlignment="Bottom">
+                <Button x:Name="buttonNext" Content="Next" Grid.Column="1" Grid.Row="1" FontSize="20"  Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold" BorderBrush="#FF7D7575" Command="{Binding ClickCommand}" CommandParameter="{Binding}" Height="39" VerticalAlignment="Bottom" Cursor="Hand">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Foreground" Value="White"/>
@@ -259,7 +262,7 @@
                                         <Condition Binding="{Binding ElementName=textBoxEmail, Path=Text}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -267,56 +270,56 @@
                                         <Condition Binding="{Binding ElementName=radioButtonMale, Path=IsChecked}" Value="false"/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=textBoxCurrentWeight, Path=Text}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=textBoxHeight, Path=Text}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=familyStatusComboBox, Path=SelectedIndex}" Value="-1" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=birthDatePicker, Path=Text}" Value=""/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding ElementName=textBoxGoalWeight, Path=Text}" Value="" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding MyPasswordProperty}" Value=""/>
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding  ElementName=textBoxGoalWeight, Path=(Validation.HasError)}" Value="true" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}"/>
                                 </MultiDataTrigger>
 
                                 <MultiDataTrigger>
@@ -324,21 +327,21 @@
                                         <Condition Binding="{Binding  ElementName=textBoxHeight, Path=(Validation.HasError)}" Value="true" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}"/>
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding  ElementName=textBoxCurrentWeight, Path=(Validation.HasError)}" Value="true" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}"/>
                                 </MultiDataTrigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding  ElementName=textBoxEmail, Path=(Validation.HasError)}" Value="true" />
                                     </MultiDataTrigger.Conditions>
                                     <Setter Property="Button.IsEnabled" Value="false"/>
-                                    <Setter Property="Button.Foreground" Value="#F4D994" />
+                                    <Setter Property="Button.Foreground" Value="{StaticResource PrimaryHueLightBrush}"/>
                                 </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>

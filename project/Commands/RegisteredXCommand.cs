@@ -21,7 +21,7 @@ namespace project.Commands
         {
             try
             {
-                ((RegisterViewModel)parameter).close();
+                ((RegisterViewModel)parameter).close();//this function close the register popUp. calls from button click
             }
             catch (Exception e)
             {
