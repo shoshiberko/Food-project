@@ -39,14 +39,14 @@
                     <ColumnDefinition Width="90*"/>
                     <ColumnDefinition Width="55*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="1" Content="Email Address" FontSize="16" Margin="10" Foreground="Gray"/>
+                <Label Grid.Column="1" Content="Email Address" FontSize="20" Margin="10" Foreground="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold"/>
                 <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
-                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="15*"/>
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="emailLoginTextBox" Grid.Row="1" Margin="5,0,5,0">
+                    <TextBox x:Name="emailLoginTextBox" Grid.Row="1" Margin="5,0,5,0" FontSize="20">
                         <TextBox.Text>
                             <Binding  Path="EmailAddress" Mode="OneWayToSource" >
                                 <Binding.ValidationRules>
@@ -64,14 +64,14 @@
                     <ColumnDefinition Width="90*"/>
                     <ColumnDefinition Width="55*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="1" Content="Password" FontSize="16" Margin="10" Foreground="Gray"/>
+                <Label Grid.Column="1" Content="Password" FontSize="20" Margin="10" Foreground="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold"/>
                 <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
-                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="15*"/>
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
-                    <PasswordBox x:Name="passwordLoginTextBox" Grid.Row="1" Margin="5,0,5,0" local:PasswordHelper.BindPassword="True" local:PasswordHelper.BoundPassword="{Binding Path=MyPasswordProperty, Mode=OneWayToSource}"/>
+                    <PasswordBox x:Name="passwordLoginTextBox" Grid.Row="1" Margin="5,0,5,0" local:PasswordHelper.BindPassword="True" local:PasswordHelper.BoundPassword="{Binding Path=MyPasswordProperty, Mode=OneWayToSource}" FontSize="20"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="4" Margin="0,23,0,0" Grid.RowSpan="2">
@@ -94,11 +94,11 @@
                     </Grid.RowDefinitions>
                     <Button x:Name="buttonRegister" Grid.Row="1" Background="Transparent" BorderThickness="0" FontSize="16"  Command="{Binding MyCommandRegister}"
                             CommandParameter="{Binding}">
-                        <TextBlock Text="Register" FontWeight="Bold" Foreground="{StaticResource PrimaryHueMidBrush}" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" />
+                        <TextBlock Text="Register" FontWeight="Bold" Foreground="{StaticResource PrimaryHueMidBrush}" TextDecorations="Underline"  Grid.Column="1" Grid.Row="1" FontSize="18"/>
                     </Button>
                 </Grid>
 
-                <Button x:Name="buttonLogIn" Content="Log in" Grid.Column="3"   Grid.Row="1" FontSize="16" Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold" BorderBrush="#FF7D7575" Cursor="Hand"
+                <Button x:Name="buttonLogIn" Content="Log in" Grid.Column="3"   Grid.Row="1" FontSize="18" Background="{StaticResource PrimaryHueMidBrush}" FontWeight="Bold" BorderBrush="#FF7D7575" Cursor="Hand"
                         Command="{Binding MyCommandLogIn}" CommandParameter="{Binding}" Margin="10,2,10,0">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">

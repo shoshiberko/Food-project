@@ -16,6 +16,9 @@
             </DataTemplate>
     </UserControl.Resources>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.5"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="50*"/>
@@ -69,6 +72,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
+            
             <ListView Name="listViewSearch" Margin="20,20,20,50" BorderBrush="Gray" BorderThickness="1" ItemsSource="{Binding FoodItemsListProperty,Mode=OneWay}">
             </ListView>
         </Grid>

@@ -8,6 +8,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="600">
     <Grid x:Name="myGrid">
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.5"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="210*"/>

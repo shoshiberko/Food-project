@@ -35,7 +35,7 @@
                             <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Menu"/>
                         </Button>
                         <Menu DockPanel.Dock="Top" Background="Transparent" >
-                            <MenuItem Background="Transparent" Width="48" Header="k" Foreground="Transparent" Height="28">
+                            <MenuItem Background="Transparent" Header="k" Foreground="Transparent" Width="30" Height="30">
                                 <MenuItem Foreground="{StaticResource PrimaryHueMidBrush}">
                                     <MenuItem.Header>
                                         <Button ToolTip="Daily Food Reporting" Content="daily food" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent" BorderThickness="0" Command="{Binding DailyFoodCommand}" CommandParameter="{Binding}">
@@ -67,15 +67,15 @@
                     </Grid>
                     <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
                     <Button ToolTip="Home" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent" BorderThickness="0" Command="{Binding HomeCommand}" CommandParameter="{Binding}" >
-                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Home" />
+                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Home" Width="30" Height="30"/>
                     </Button>
 
                     <Button ToolTip="Search Food Details" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent"  BorderThickness="0" Command="{Binding SearchCommand}" CommandParameter="{Binding}">
-                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Search" />
+                        <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Left" Kind="Search" Width="30" Height="30" />
                     </Button>
 
                     <Button ToolTip="Log out" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent" BorderThickness="0" Command="{Binding LogOutCommand}" CommandParameter="{Binding}">
-                        <materialDesign:PackIcon  VerticalAlignment="Center" HorizontalAlignment="Left" Kind="power" />
+                        <materialDesign:PackIcon  VerticalAlignment="Center" HorizontalAlignment="Left" Kind="power" Width="30" Height="30"/>
                     </Button>
                     <Label IsEnabled="False" Background="Transparent" BorderThickness="0"></Label>
                 </StackPanel>
